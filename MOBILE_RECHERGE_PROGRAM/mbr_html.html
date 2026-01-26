@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECHERGE PLAIN</title>
+    <link rel="stylesheet" href="mbr.css">
+</head>
+
+<body>
+    <div id="MAIN_BODY">
+        <div id="MAIN_RECHERGE_PALN">
+            <div class="COLOUMS">
+                <span>Customer Name :- </span><input type="text" id="CUSTOMER_NAME" oninput="NULL_FIELDS()"><br>
+                <p id="NAME_ERROR"></p>
+            </div>
+            <div class="COLOUMS">
+                <span>Mobile Number :- </span><input type="text" id="MOBILE_NUMBER" oninput="NUM_ERRORR()">
+                <p id="NUM_ERROR"></p>
+
+            </div>
+            <div class="COLOUMS">
+                <span>Recharge plan :- </span>
+                <select id="R_PLAN" onchange="CHEAK_SELECT()">
+                    <option value="">Select Plan</option>
+                    <option value="199">₹199</option>
+                    <option value="299">₹299</option>
+                    <option value="399">₹399</option>
+                </select>
+                <p id="SELLCT_ERROR"></p>
+            </div>
+            <div class="COLOUMS">
+                <span>Total Amount With 18% GST :- </span><input type="text" id="GST_AMOUNT" readonly>
+            </div>
+
+            <button id="BTN" onclick="INPUT_DEATIELS()" disabled>Payment Mode</button>
+        </div>
+
+
+        <div id="PAYMENT_MODE">
+
+            <div class="row">
+                <span>Mobile No :-</span>
+                <p id="M_INPUT"></p>
+            </div>
+
+            <div class="row">
+                <span>Sim :-</span>
+                <P id="SIM_P"></P>
+            </div>
+
+            <div class="row">
+                <span>Total Amount :-</span>
+                <P id="T_AMOUNT"></P>
+            </div>
+
+            <div class="row">
+                <span>Payment Mode :-</span>
+                <select id="PAYMENT_SELECT" onchange="PAYMENT_METHOD()">
+                    <option value="">Select Options</option>
+                    <option value="upi">UPI</option>
+                    <option value="card">Debit / Credit Card</option>
+                    <option value="netbanking">Net Banking</option>
+                    <option value="cash">Cash</option>
+                </select>
+            </div>
+
+
+            <button id="PYMENT-BTN">PAYMENT</button>
+
+        </div>
+        <div id="PAYMENT_BOX">
+
+            <h3>UPI Payment</h3>
+
+            <div class="upi-row">
+                <label>Enter UPI ID :-</label>
+                <input type="text" id="UPI_INPUT" placeholder="yourname@upi" oninput="CHECK_UPI()">
+                <p id="UPI_ERROR"></p>
+
+
+            </div>
+
+            <div class="upi-example">
+                <p>Example :- rohit.sharma@axisbank</p>
+                <p>Example :- 9876543210@ybl</p>
+                <p>Example :- myname@upi</p>
+            </div>
+
+            <button id="UPI_PYMENT" disabled onclick="FINAL_PAYMENT('UPI Payment')">PAY NOW</button>
+
+        </div>
+
+<div id="CARD_PAYMENT">
+
+    <h3>Card Payment</h3>
+
+    <div class="row">
+        <label>Card Number :-</label>
+        <input type="text" id="CARD_NO" placeholder="1234567812345678" maxlength="16" oninput="CHECK_CARD()">
+        <p id="CARD_NO_ERR"></p>
+    </div>
+
+    <div class="row">
+        <label>Card Holder Name :-</label>
+        <input type="text" id="CARD_NAME" placeholder="Name on Card" oninput="CHECK_CARD()">
+        <p id="CARD_NAME_ERR"></p>
+    </div>
+
+    <div class="row">
+        <label>Expiry Date :-</label>
+        <input type="month" id="CARD_EXP" onchange="CHECK_CARD()">
+        <p id="CARD_EXP_ERR"></p>
+    </div>
+
+    <div class="row">
+        <label>CVV :-</label>
+        <input type="password" id="CARD_CVV" placeholder="***" maxlength="3" oninput="CHECK_CARD()">
+        <p id="CARD_CVV_ERR"></p>
+    </div>
+
+    <button id="CARD_PAY_BTN" disabled onclick="FINAL_PAYMENT('Credit Card Payment')">
+        PAY NOW
+    </button>
+
+</div>
+
+       <div id="NET_BANKING">
+
+    <h3>Net Banking</h3>
+
+    <div class="row">
+        <label>Select Bank :-</label>
+        <select id="NB_BANK" onchange="CHECK_NETBANKING()">
+            <option value="">Select Bank</option>
+            <option>SBI</option>
+            <option>HDFC</option>
+            <option>ICICI</option>
+            <option>Axis Bank</option>
+            <option>PNB</option>
+        </select>
+        <p id="NB_BANK_ERR"></p>
+    </div>
+
+    <div class="row">
+        <label>Account Holder Name :-</label>
+        <input type="text" id="NB_NAME" placeholder="Enter account holder name" oninput="CHECK_NETBANKING()">
+        <p id="NB_NAME_ERR"></p>
+    </div>
+
+    <div class="row">
+        <label>Account Number :-</label>
+        <input type="text" id="NB_ACC" placeholder="Enter account number" oninput="CHECK_NETBANKING()">
+        <p id="NB_ACC_ERR"></p>
+    </div>
+
+    <div class="row">
+        <label>IFSC Code :-</label>
+        <input type="text" id="NB_IFSC" placeholder="e.g. SBIN0001234" oninput="CHECK_NETBANKING()">
+        <p id="NB_IFSC_ERR"></p>
+    </div>
+
+    <button id="NB_PAY_BTN" disabled onclick="FINAL_PAYMENT('Net Banking')">
+        PAY NOW
+    </button>
+
+</div>
+
+
+        <div id="CASH_PAYMENT">
+
+            <h3>Cash Payment</h3>
+
+            <p>Pay cash at counter</p>
+            <p><b>Status :</b> Payment Pending</p>
+
+            <button onclick="FINAL_PAYMENT('Cash Payment')">
+                CONFIRM CASH PAYMENT
+            </button>
+
+
+        </div>
+
+
+
+        <div id="SUMMARY_BOX">
+
+            <h3>Summary</h3>
+
+            <p><b>Recharge Successful!!</b></p>
+            <p>Customer Name :- <span id="S_NAME"></span></p>
+            <p>Mobile No :- <span id="S_MOBILE"></span></p>
+            <p>Recharge Plan Name :- <span id="S_PLAN"></span></p>
+            <p>Total Amount Pay :- <span id="S_AMOUNT"></span></p>
+            <p>Validity :- <span id="S_VALIDITY"></span></p>
+            <p>Recharge Date :- <span id="S_DATE"></span></p>
+            <p>Recharge Time :- <span id="S_TIME"></span></p>
+            <p>Payment Mode :- <span id="S_MODE"></span></p>
+            <p id="S_EXTRA"></p>
+
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="mbr.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="STYLE.css">
+</head>
+
+<body>
+    <div id="MAIN_BOX">
+
+        <div class="row">
+            <span>Assigned to :- </span><input type="text" id="A_b" oninput="Assian_person(); CHECK_BUTTON();"
+                onfocus="Assian_person(); CHECK_BUTTON();">
+
+        </div>
+        <p id="ASSIAN_ERROR"></p>
+        <div class="row">
+            <span>Task :- </span><input type="text" id="TASK" oninput="TASK_CHEAK(); CHECK_BUTTON();"
+                onfocus="TASK_CHEAK(); CHECK_BUTTON();">
+        </div>
+        <p id="Task_EROOR"></p>
+
+        <div class="row">
+            <span>Description :- </span><textarea name="" id="des" oninput="DESCRIPTION_CHECK(); CHECK_BUTTON();"
+                onfocus="DESCRIPTION_CHECK(); CHECK_BUTTON();"></textarea>
+        </div>
+        <p id="Description_error"></p>
+
+        <div class="row">
+            <span>Date To Assignment :- </span><input type="date" id="A_D" oninput="DATE_CHECK(); CHECK_BUTTON();"
+                onclick="DATE_CHECK(); CHECK_BUTTON();">
+        </div>
+        <p id="ASSIAN_date_ERROR"></p>
+
+        <div class="row">
+            <span>Priority :- </span>
+            <select id="PRIORITY" onchange="PRIORITY_CHECK(); CHECK_BUTTON();"
+                onclick="PRIORITY_CHECK(); CHECK_BUTTON();">
+                <option value="">Select Priority</option>
+                <option value="HIGH">HIGH</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="LOW">LOW</option>
+            </select>
+        </div>
+        <p id="priorty_error"></p>
+
+
+        <div class="row">
+
+            <span>Deadline :- </span>
+
+            <div id="WEEK_SELECT" onfocus="WEEK_CHECK(); CHECK_BUTTON();">
+                <input type="radio" name="date" id="first_week" onclick="WEEK_CHECK(); CHECK_BUTTON(); "><span>With In 1
+                    Week</span>
+                <input type="radio" name="date" id="second_week" onclick="WEEK_CHECK(); CHECK_BUTTON(); "><span>With In
+                    2 Week</span>
+                <input type="radio" name="date" id="third_week" onclick="WEEK_CHECK(); CHECK_BUTTON(); "><span>With In 3
+                    Week</span>
+                <input type="radio" name="date" id="fourth_week" onclick="WEEK_CHECK(); CHECK_BUTTON(); "><span>With In
+                    4 Week</span>
+            </div>
+        </div>
+        <p id="week_error"></p>
+
+
+        <div class="row">
+            <span>Status :-</span>
+            <div id="stutas_div" onfocus="STATUS_CHECK(); CHECK_BUTTON(); ">
+                <input type="radio" name="Status" id="N_s" onclick="STATUS_CHECK(); CHECK_BUTTON(); "><span>Not
+                    Started</span>
+                <input type="radio" name="Status" id="I_P" onclick="STATUS_CHECK(); CHECK_BUTTON(); "><span>In
+                    Progress</span>
+                <input type="radio" name="Status" id="C"
+                    onclick="STATUS_CHECK(); CHECK_BUTTON(); "><span>Completed</span>
+                <input type="radio" name="Status" id="N_F" onclick="STATUS_CHECK(); CHECK_BUTTON(); "><span>Needs
+                    Info</span>
+                <input type="radio" name="Status" id="N_I" onclick="STATUS_CHECK(); CHECK_BUTTON(); "><span>On
+                    Hold</span>
+                <input type="radio" name="Status" id="C_L"
+                    onclick="STATUS_CHECK(); CHECK_BUTTON(); "><span>Cancelled</span>
+            </div>
+        </div>
+        <p id="status_error"></p>
+        <button id="Task_btn" onclick=" ADD_TASK()" disabled >Add Task</button>
+
+    </div>
+
+    <div id="FOTTER">
+        <div id="TASK_TEXT">
+            <h2>Task</h2>
+        </div>
+        <div id="FOTER_MID">
+            <h3 id="MID_TEXT">Assigned To</h3>
+            <h3 id="MID_TEXT">Task</h3>
+            <h3 id="MID_TEXT">Description</h3>
+            <h3 id="MID_TEXT">Assigned Date</h3>
+            <h3 id="MID_TEXT">Priority</h3>
+            <h3 id="MID_TEXT">Deadline</h3>
+            <h3 id="MID_TEXT">Status</h3>
+            <h3 id="MID_TEXT">Edit</h3>
+            <h3 id="MID_TEXT">Delete</h3>
+            <h3 id="MID_TEXT">Mark Completed</h3>
+        </div>
+
+        <div id="FOTTER_END">
+            <p id="first_box"></p>
+            <p id="sec_box"></p>
+            <p id="third_box"></p>
+            <p id="fouth_box"></p>
+            <p id="fifth_box"></p>
+            <p id="six_box"></p>
+            <p id="seven_box"></p>
+            <p id="eyet_box">
+                <button id="Edit_btn" onclick="Edit_function()">
+                    Edit
+                </button>
+            </p>
+            <p id="nine_box">
+                <button id="Delete_btn" onclick="delete_function()" disabled>Delete</button>
+            </p>
+            <p id="tenth_box">
+                <input type="checkbox" name="" id="Completed_cheak" onclick="Cheak_click_function()">
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="SCRIPT.js"></script>
+</body>
+
+</html>

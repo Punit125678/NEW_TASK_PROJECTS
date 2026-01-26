@@ -1,0 +1,133 @@
+*
+{
+    font-family: sans-serif;
+    font-weight: 600;
+    color: black;
+}
+body
+{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4eeee;
+}
+
+.main_box
+    {
+        width: 30vw;
+        height: auto;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 15px;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+        border-radius: 8px;
+        box-shadow: 7px 7px 15px black;
+              background-color: #d1dadc;
+
+    }
+
+.main_box input,
+.main_box select
+{
+    border: 2px solid black;
+    width: 60%;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 20px;
+}
+.main_box select   
+ {
+     width: 66.6%;
+    height: 41px;
+
+}
+
+
+.radio_click
+    {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 60%;
+        gap: 10px;
+
+    }
+
+.radio_click input
+    {
+        width: 16px;
+        height: 16px;
+    }
+
+#Extra
+{
+    width: auto;
+    display: none;
+    grid-template-columns: repeat(2.2fr);
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+#Extra input
+    {
+        width: 49%;
+        height: 40px;
+        background-color: #fff;
+        color: black;
+        border-radius: 5px;
+        padding-left: 20px;
+        box-sizing: border-box;
+    }
+
+#cl_dyas
+    {
+        width: 99% !important;
+        height: 55px;
+        padding-right: 100px;
+    }
+
+.radio_click input[type="radio"]
+{
+    accent-color: gray;  
+}
+
+.radio_click input[type="radio"]:checked
+{
+    accent-color: green; 
+}
+#EAD
+    {
+        border: 2px solid black;
+    }
+#EAD_ERROR
+    {
+        position: absolute;
+        /* background-color: #fff; */
+           margin: 0;
+    padding: 0;
+    position: relative;
+    right: 14%;
+    color: red;
+    margin-top: -10px;
+    margin-bottom: -9px;
+    }
+p
+{
+    margin-top: -4px;
+    margin-bottom: -4px;
+    margin-right: 6rem;
+    
+}
+#leap_year
+    {
+        margin-right: 14rem;
+    }

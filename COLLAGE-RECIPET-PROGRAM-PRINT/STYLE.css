@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(120deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#MAIN_BOX {
+    background: #ffffff;
+    width: 1020px;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+#des {
+    width: 720px;
+    height: 100px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#ASSIAN_ERROR,
+#Task_EROOR ,
+#status_error,
+#week_error,
+#priorty_error,
+#ASSIAN_date_ERROR,
+#Description_error
+{
+    margin-left: 25%;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: red;
+}
+
+.row span {
+    width: 240px;
+    font-weight: 600;
+    color: #333;
+}
+
+.row input[type="text"],
+.row input[type="date"],
+.row select {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+}
+
+.row input:focus,
+.row select:focus {
+    border-color: #667eea;
+}
+
+.row select {
+    cursor: pointer;
+}
+
+#stutas_div {
+    /* display: flex; */
+    /* padding-right:  4px;
+    margin-left:  4px; */
+
+    /* border: 1px solid black; */
+}
+
+#WEEK_SELECT input,
+#stutas_div input {
+    cursor: pointer;
+    /* margin-left: 2px; */
+}
+
+#WEEK_SELECT span,
+#stutas_div span {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 4px;
+    font-weight: 600;
+}
+
+#Task_btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #667eea;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 0.5;
+}
+input,select,textarea,button    {
+        box-shadow:  1px 2px 5px black;
+    }
+
+#Task_btn:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+}
+
+/* ===== TASK FOOTER MAIN ===== */
+#FOTTER {
+    width: 70%;
+    margin: 40px auto;
+    background: #6f79dd;
+    /* second image style */
+    border: 1px solid white;
+    /* border-radius: 10px; */
+    box-sizing: border-box;
+    display: none;
+}
+
+/* ===== TASK HEADING ===== */
+#TASK_TEXT h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    padding: 10px 0;
+    background: #5666fa;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+/* ===== HEADER ROW ===== */
+#FOTER_MID {
+    display: grid;
+    grid-template-columns:
+        1.2fr 1fr 1.5fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 1.4fr;
+    background: #2534db;
+
+}
+
+/* HEADER CELLS */
+#MID_TEXT {
+    height: 70px;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    color: white;
+}
+
+/* ===== DATA ROW ===== */
+#FOTTER_END {
+    display: grid;
+    grid-template-columns:
+        1.2fr 1fr 1.5fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 1.4fr;
+    background-color: #fff;
+    /* background: white; */
+}
+
+/* DATA CELLS (P TAGS) */
+#FOTTER_END p {
+    height: 80px;
+    /* same as first image */
+    border: 1px solid white;
+    gap: 1px;
+    margin: 0;
+    padding: 8px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    /* vertical center */
+    justify-content: center;
+    /* horizontal center */
+    background: #f5e6e6;
+    color: black;
+}
+
+/* Empty space look (jab text na ho) */
+#FOTTER_END p:empty::after {
+    content: " ";
+    white-space: pre;
+}
+
+#Edit_btn {
+    padding: 4px 7px;
+    color: black;
+    font-weight: 600;
+    background-color: #bbcd19;
+    border-radius: 5px;
+    border: none;
+}
+
+#Delete_btn {
+    background-color: #d52828;
+    padding: 3px 6px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    opacity: 0.5;
+}
+
+#Delete_btn:hover,
+#CHEAK_BTN:hover {
+    box-shadow: 0 5px 10px black;
+}

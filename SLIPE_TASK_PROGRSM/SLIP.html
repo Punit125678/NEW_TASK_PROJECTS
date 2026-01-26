@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slip Page</title>
+    <link rel="stylesheet" href="SLIP.css">
+</head>
+<body>
+    <form id="Form_page" onblur="year_select()">
+    <div class="main_box">
+    <input type="number" id="year" placeholder="Enter Year" onkeyup="year_select()">
+   
+    <p id="leap_year"></p>
+
+<select id="month" onchange="setDays()" disabled>
+    <option value="">Select Month</option>
+    <option value="1">Jan</option>
+    <option value="2">Feb</option>
+    <option value="3">Mar</option>
+    <option value="4">Apr</option>
+    <option value="5">May</option>
+    <option value="6">Jun</option>
+    <option value="7">Jul</option>
+    <option value="8">Aug</option>
+    <option value="9">Sep</option>
+    <option value="10">Oct</option>
+    <option value="11">Nov</option>
+    <option value="12">Dec</option>
+</select>
+
+<input type="number" id="dayss" placeholder="Days" readonly>
+
+    <input type="number" placeholder="Employee Absent Days" id="EAD" onclick="REMENING_DYS()" oninput="REMENING_DYS()" disabled>
+    <p id="EAD_ERROR"></p>
+    <input type="number" placeholder="Employee Present Days" id="PRD" readonly>
+    <input type="number"  placeholder="Employee Per Days"id="EPD" oninput="INPUT_TYPE()" onkeyup="cheak_input()" disabled>
+    <p id="salary_error"></p>
+
+
+
+    <div class="radio_click" >
+        <span>Allow CL :- </span>
+        <input type="radio" name="cl" id="cl_yes" value="yes" onclick="checkCL()" disabled> Yes
+        <input type="radio" name="cl" id="cl_no" value="no" onclick="checkCL()" disabled> No
+    </div>
+        <div id="Extra">
+
+                <input type="number" id="cl_dyas" placeholder="CL Days" oninput="AddEXTRA()">
+                
+            <div class="hr">
+                 <input type="number" id="HR" placeholder="HR Allowance %" oninput="calculateSalary()">
+                 <input type="number" id="hrinput">
+            </div>
+               
+            <div class="sd">
+                <input type="number" id="SD" placeholder="SD Allowance %" oninput="calculateSalary()">
+                <input type="number" id="sdinput">
+            </div>
+
+            <div class="focd">
+                <input type="number" id="FOCD" placeholder="FOCD Allowance %" oninput="calculateSalary()">
+                <input type="number" id="focdinput">
+            </div>
+                
+            <div class="travel">
+                <input type="number" id="TRAVEL" placeholder="Travel Allowance %" oninput="calculateSalary()">
+                <input type="number" id="travelinput">
+            </div>
+                
+
+        </div>
+    <input type="number" placeholder="Total Amount" id="Total_sallary" readonly>
+</div>
+</form>
+
+
+<script src="SLIP.js"></script>
+</body>
+</html>
