@@ -2,14 +2,17 @@ function Assian_person() {
     let Assian_INPUT = document.getElementById("A_b");
     let ERORO = document.getElementById("ASSIAN_ERROR");
     let value = Assian_INPUT.value.trim();
+    ERORO.innerText = "";
 
     if (/[0-9]/.test(value)) {
+        Assian_INPUT.value = Assian_INPUT.value.slice(0, -1);
         ERORO.innerText = "Numbers are not allowed";
         Assian_INPUT.style.border = "2px solid red";
         return false;
     }
 
     if (/[^a-zA-Z ]/.test(value)) {
+        Assian_INPUT.value = Assian_INPUT.value.slice(0, -1);
         ERORO.innerText = "Special characters not allowed";
         Assian_INPUT.style.border = "2px solid red";
         return false;
@@ -26,10 +29,17 @@ function Assian_person() {
     return true;
 }
 
+
 function TASK_CHEAK() {
+    let Assian_INPUT = document.getElementById("A_b");
+    let value1 = Assian_INPUT.value.trim();
     let t = document.getElementById("TASK");
     let e = document.getElementById("Task_EROOR");
 
+    if(Assian_INPUT.value !== "")
+    {
+        Assian_person();
+    }
     if (t.value.trim().length < 3) {
         e.innerText = "Fill valid task";
         t.style.border = "2px solid red";
@@ -354,32 +364,31 @@ function Edit_function() {
         document.getElementById("Delete_btn").style.opacity = "0.5";
     ENABLE_ALL_FIELDS();
 }
+function SHOW_LOADER() {
+    document.getElementById("LOADER").style.display = "flex";
+
+    setTimeout(function () {
+        document.getElementById("LOADER").style.display = "none";
+        delete_function();
+    }, 3000);
+}
 
 function delete_function() {
+    document.getElementById("Task_btn").innerText = "Add Task";
+    ENABLE_ALL_FIELDS();
+    document.getElementById("FOTTER_END").style.display = "none";
 
-        Swal.fire({
-        icon: 'warning',
-        title: 'Delete Task?',
-        text: 'Are you sure you want to delete this task?',
-        confirmButtonText: 'OK'
+    let delBtn = document.getElementById("Delete_btn");
+    delBtn.disabled = true;
+    delBtn.style.opacity = "0.5";
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Deleted',
+        text: 'Task deleted successfully!'
     });
-        setTimeout(function(){
-             document.getElementById("Task_btn").innerText = "Add Task";
-        ENABLE_ALL_FIELDS();
-        document.getElementById("FOTTER_END").style.display = "none";
-         document.getElementById("Delete_btn").disabled = true;
-        document.getElementById("Delete_btn").style.opacity = "0.5";
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Deleted',
-            text: 'Task deleted successfully!'
-        });
-        },3000);
-       
-
-   
 }
+
 
 function DISABLE_ALL_FIELDS() {
     A_b.disabled = true;

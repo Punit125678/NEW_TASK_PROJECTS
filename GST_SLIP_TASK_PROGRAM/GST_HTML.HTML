@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="GST_CSS.CSS">
+
+</head>
+
+<body>
+    <div id="MAIN_BOX">
+        <div class="HEADING">
+            <h1>ABC INSTITUTE</h1>
+
+            <h3>Navlakha indore mp ph 92445-12565</h3>
+        </div>
+
+        <div class="RECEPET_HEDING">
+            <h3>Receipt</h3>
+        </div>
+
+        <div id="DATE">
+            <input type="date" id="INPUT_DATE" onchange="dateChange() ">
+        </div>
+
+        <div id="NAME_OF_STUDENT">
+            <span id="S_NAME">Student Name :- </span><input type="text" placeholder="Enter Name" id="USER_NAME" oninput="nameInput()" disabled><span id="name_error" style="color:red; font-size:13px;"></span>
+        </div>
+
+        <div id="COLOUMS_ROWS">
+            <div class="INNER_ROW_COLOUM">
+                <div id="COURSE_DEATIELS">
+
+                    <div class="row">
+                        <h2>COURSES OFFERED BY INSTITUTE</h2>
+                    </div>
+
+                    <div class="row">
+                        <h3>Course</h3>
+                        <span id="course_name"></span>
+                    </div>
+
+                    <div class="row">
+                        <h3>Pay Fees</h3>
+                        <span id="pay_fees"></span>
+                    </div>
+
+                    <div class="row">
+                        <h3>GST Include</h3>
+                        <select id="gst" onchange="checkGst()" disabled>
+                            <option value="">GST %</option>
+                            <option value="5">5%</option>
+                            <option value="9">9%</option>
+                            <option value="18">18%</option>
+                        </select>
+                    
+                    </div>
+
+                    <div class="row">
+                        <h3>CGST (%)</h3>
+                       
+                    </div>
+
+                    <div class="row">
+                        <h3>SGST (%)</h3>
+                        
+                    </div>
+
+                    <div class="row">
+                        <h3>Total Fees Including Tax</h3>
+                    </div>
+
+                </div>
+
+
+                <div id="ALL_INPUT_BOX">
+
+                    <h2>COURSE FEES</h2>
+
+
+                    <select id="city" onchange="courseChange(); checkGstButton() " disabled>
+                        <option value="">SELECT COURSE</option>
+                        <option value="java">JAVA SCRIPT</option>
+                        <option value="py">PYTHON</option>
+                        <option value="cpp">C++</option>
+                        <option value="sql">SQL</option>
+                    </select>
+
+                    <input type="text" placeholder="Enter Amount" id="fee_input" oninput="feeInput() " disabled>
+
+                    <input type="text" readonly id="gst_amount">
+                    <input type="text" readonly id="cgst">
+                    <input type="text" readonly id="sgst">
+                    <input type="text" readonly id="total_fees">
+
+                </div>
+            </div>
+            <button id="GST_CRAEATE_BTN" onclick="randomGstBox()" disabled>GET GST</button>
+            <div id="RANDOM_GST_CREATE"></div>
+        </div>
+
+        <div class="FOOTER">
+            <button onclick="PRINT_GST()" disabled id="prnt_btn">PRINT</button>
+        </div>
+
+    </div>
+    <script src="GST_JS.JS"></script>
+</body>
+
+</html>

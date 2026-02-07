@@ -367,3 +367,131 @@ body {
     position: relative;
     right: 1%;
 }
+ #LOADER {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 18px;
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ddd;
+            border-top: 5px solid #4caf50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+ /* ===== PAGE BACKGROUND (override) ===== */
+body,
+#MAIN_BODY {
+    background-color: #eef1f5;
+}
+
+/* ===== MAIN RECHARGE FORM ===== */
+#MAIN_RECHERGE_PALN {
+    background-color: #ffffff;
+    border-color: #cfcfcf;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+/* ===== PAYMENT MODE BOX ===== */
+#PAYMENT_MODE {
+    background-color: #f8f9fb;
+    border-color: #cfcfcf;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* ===== UPI PAYMENT BOX ===== */
+#PAYMENT_BOX {
+    background-color: #ffffff;
+    border-color: #cfcfcf;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+/* ===== CARD PAYMENT BOX ===== */
+#CARD_PAYMENT {
+    background-color: #f0f6ff;
+    border-color: #b8cfff;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+/* ===== NET BANKING BOX ===== */
+#NET_BANKING {
+    background-color: #fff9ed;
+    border-color: #e0cfa5;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+/* ===== CASH PAYMENT BOX ===== */
+#CASH_PAYMENT {
+    background-color: #f3fff5;
+    border-color: #a9d9b6;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+/* ===== SUMMARY BOX ===== */
+#SUMMARY_BOX {
+    background-color: #e8f7ee;
+    border-color: #2e7d32;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+}
+
+/* ===== INPUTS (soft look) ===== */
+input,
+select {
+    background-color: #ffffff;
+}
+
+/* ===== BUTTONS (slightly richer) ===== */
+button {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+button:disabled {
+    box-shadow: none;
+}
+
+#print_btn {
+    padding: 8px 18px;
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#print_btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#print_btn:active {
+    transform: scale(0.96);
+}
+
+ .error-text {
+        opacity: 0;
+        transition: opacity 1s ease;
+        font-size: 14px;
+    }

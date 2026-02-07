@@ -33,6 +33,7 @@ function PAYMENT_METHOD() {
 
     if (P_METHOD == "upi") {
         document.getElementById("PAYMENT_BOX").style.display = "flex";
+        
     }
     else if (P_METHOD == "card") {
         document.getElementById("CARD_PAYMENT").style.display = "block";
@@ -47,20 +48,35 @@ function PAYMENT_METHOD() {
         PYMENT_BOX_DISEVLE();
     }
 }
+ function SHOW_LOADER() {
+            document.getElementById("LOADER").style.display = "flex";
+
+        
+            setTimeout(function() {
+                document.getElementById("LOADER").style.display = "none";
+            }, 2000);
+        }
+
 
 function FINAL_PAYMENT(paymentMode) {
+        document.getElementById("PAYMENT_SELECT").disabled = true;
+        DISABLE_ALL_PAYMENT();
+        SHOW_LOADER();
 
+
+    setTimeout(function () {
+        
     Swal.fire({
         icon: 'success',
         title: 'Payment Successful!',
         text: paymentMode,
-        timer: 2000,
+        timer: 1500,
         showConfirmButton: false
     });
-
-    setTimeout(function () {
+    }, 2500);
+    setTimeout(function (){
         SHOW_SUMMARY(paymentMode);
-    }, 2000);
+    },3500);
 }
 function SHOW_SUMMARY(paymentMode) {
 
@@ -126,9 +142,19 @@ function SHOW_SUMMARY(paymentMode) {
             "<b>Cash Payment</b><br>" +
             "Payment will be collected in cash";
     }
-
+   
     document.getElementById("SUMMARY_BOX").style.display = "block";
 }
+
+document.getElementById("print_btn").onclick = function () {
+
+    let originalBody = document.body.innerHTML;
+    let summary = document.getElementById("SUMMARY_BOX").innerHTML;
+
+    document.body.innerHTML = summary;
+    window.print();
+    document.body.innerHTML = originalBody;
+};
 
 let NAME_OK = false;
 let NUMBER_OK = false;
@@ -160,7 +186,18 @@ function NULL_FIELDS() {
     let INPUT_NAME = document.getElementById("CUSTOMER_NAME");
     let name_error = document.getElementById("NAME_ERROR");
 
+    let originalValue = INPUT_NAME.value;
+
     INPUT_NAME.value = INPUT_NAME.value.replace(/[^a-zA-Z\s]/g, "");
+
+    if (originalValue !== INPUT_NAME.value) {
+        name_error.innerText = "Only letters allowed";
+        name_error.style.color = "red";
+        INPUT_NAME.style.border = "2px solid red";
+        NAME_OK = false;
+        CHECK_ALL_FIELDS();
+        return;
+    }
 
     if (INPUT_NAME.value.trim() === "") {
         name_error.innerText = "Enter your name";
@@ -176,11 +213,28 @@ function NULL_FIELDS() {
 
     CHECK_ALL_FIELDS();
 }
+
+
 function NUM_ERRORR() {
     let INPUT_NUM = document.getElementById("MOBILE_NUMBER");
     let NUM_ERROR = document.getElementById("NUM_ERROR");
 
+    let originalValue = INPUT_NUM.value;
+
     INPUT_NUM.value = INPUT_NUM.value.replace(/[^0-9]/g, "");
+
+    if (INPUT_NUM.value.length > 10) {
+        INPUT_NUM.value = INPUT_NUM.value.slice(0, 10);
+    }
+
+    if (originalValue !== INPUT_NUM.value) {
+        NUM_ERROR.innerText = "Only numbers allowed";
+        NUM_ERROR.style.color = "red";
+        INPUT_NUM.style.border = "2px solid red";
+        NUMBER_OK = false;
+        CHECK_ALL_FIELDS();
+        return;
+    }
 
     if (INPUT_NUM.value === "") {
         NUM_ERROR.innerText = "Enter mobile number";
@@ -203,6 +257,7 @@ function NUM_ERRORR() {
 
     CHECK_ALL_FIELDS();
 }
+
 
 function CHECK_ALL_FIELDS() {
     let btn = document.getElementById("BTN");
@@ -247,121 +302,218 @@ function CHECK_UPI() {
     }
 }
 
-function CHECK_CARD() {
-
+function CHEAK_card_number() {
     let cardNo = document.getElementById("CARD_NO");
+    let err = document.getElementById("CARD_NO_ERR");
+
+    cardNo.value = cardNo.value.replace(/[^0-9]/g, "");
+    cardNo.value = cardNo.value.slice(0, 16);
+
+    if (cardNo.value.length !== 16) {
+        err.innerText = "Enter 16 digit card number";
+        err.style.color = "red";
+        return false;
+    } else {
+        err.innerText = "";
+        return true;
+    }
+}
+function CHEAK_CARD_NAME() {
     let cardName = document.getElementById("CARD_NAME");
+    let err = document.getElementById("CARD_NAME_ERR");
+
+    cardName.value = cardName.value.replace(/[^a-zA-Z\s]/g, "");
+
+    if (cardName.value.trim().length < 3) {
+        err.innerText = "Enter valid name";
+        err.style.color = "red";
+        return false;
+    } else {
+        err.innerText = "";
+        return true;
+    }
+}
+function CHEAK_CARD_DATE() {
     let exp = document.getElementById("CARD_EXP");
+    let err = document.getElementById("CARD_EXP_ERR");
+
+    if (exp.value === "") {
+        err.innerText = "Select expiry date";
+        err.style.color = "red";
+        return false;
+    } else {
+        err.innerText = "";
+        return true;
+    }
+}
+function CHEAK_CVV() {
     let cvv = document.getElementById("CARD_CVV");
+    let err = document.getElementById("CARD_CVV_ERR");
+
+    cvv.value = cvv.value.replace(/[^0-9]/g, "");
+    cvv.value = cvv.value.slice(0, 3);
+
+    if (cvv.value.length !== 3) {
+        err.innerText = "Enter 3 digit CVV";
+        err.style.color = "red";
+        return false;
+    } else {
+        err.innerText = "";
+        return true;
+    }
+}
+function CHECK_CARD() {
     let payBtn = document.getElementById("CARD_PAY_BTN");
+
+    if (
+        document.getElementById("CARD_NO").value.trim() === "" ||
+        document.getElementById("CARD_NAME").value.trim() === "" ||
+        document.getElementById("CARD_EXP").value === "" ||
+        document.getElementById("CARD_CVV").value.trim() === ""
+    ) {
+        payBtn.disabled = true;
+        payBtn.style.opacity = "0.5";
+        payBtn.style.cursor = "not-allowed";
+        return;
+    }
 
     let ok = true;
 
-    cardNo.value = cardNo.value.replace(/[^0-9]/g, "");
-    if (cardNo.value.length !== 16) {
-        document.getElementById("CARD_NO_ERR").innerText = "Enter 16 digit card number";
-        document.getElementById("CARD_NO_ERR").style.color = "red";
-        ok = false;
-    } else {
-        document.getElementById("CARD_NO_ERR").innerText = "";
-    }
-
-    cardName.value = cardName.value.replace(/[^a-zA-Z\s]/g, "");
-    if (cardName.value.trim().length < 3) {
-        document.getElementById("CARD_NAME_ERR").innerText = "Enter valid name";
-        document.getElementById("CARD_NAME_ERR").style.color = "red";
-        ok = false;
-    } else {
-        document.getElementById("CARD_NAME_ERR").innerText = "";
-    }
-
-    if (exp.value === "") {
-        document.getElementById("CARD_EXP_ERR").innerText = "Select expiry date";
-        document.getElementById("CARD_EXP_ERR").style.color = "red";
-        ok = false;
-    } else {
-        document.getElementById("CARD_EXP_ERR").innerText = "";
-    }
-
-    cvv.value = cvv.value.replace(/[^0-9]/g, "");
-    if (cvv.value.length !== 3) {
-        document.getElementById("CARD_CVV_ERR").innerText = "Enter 3 digit CVV";
-        document.getElementById("CARD_CVV_ERR").style.color = "red";
-        ok = false;
-    } else {
-        document.getElementById("CARD_CVV_ERR").innerText = "";
-    }
+    if (!CHEAK_card_number()) ok = false;
+    if (!CHEAK_CARD_NAME()) ok = false;
+    if (!CHEAK_CARD_DATE()) ok = false;
+    if (!CHEAK_CVV()) ok = false;
 
     payBtn.disabled = !ok;
     payBtn.style.opacity = ok ? "1" : "0.5";
     payBtn.style.cursor = ok ? "pointer" : "not-allowed";
-} function CHECK_NETBANKING() {
+}
+// ================= BANK ================= */
 
+function CHECK_NB_BANK(silent = false) {
     let bank = document.getElementById("NB_BANK");
-    let name = document.getElementById("NB_NAME");
-    let acc = document.getElementById("NB_ACC");
-    let ifsc = document.getElementById("NB_IFSC");
-    let btn = document.getElementById("NB_PAY_BTN");
-
-    let ok = true;
+    let err = document.getElementById("NB_BANK_ERR");
 
     if (bank.value === "") {
-        document.getElementById("NB_BANK_ERR").innerText = "Select bank";
-        document.getElementById("NB_BANK_ERR").style.color = "red";
-        ok = false;
+        if (!silent) {
+            err.innerText = "Select bank";
+            err.style.color = "red";
+        }
+        return false;
     } else {
-        document.getElementById("NB_BANK_ERR").innerText = "";
+        if (!silent) err.innerText = "";
+        return true;
     }
+}
+
+/* ================= NAME ================= */
+function CHECK_NB_NAME(silent = false) {
+    let name = document.getElementById("NB_NAME");
+    let err = document.getElementById("NB_NAME_ERR");
 
     name.value = name.value.replace(/[^a-zA-Z\s]/g, "");
+
     if (name.value.trim().length < 3) {
-        document.getElementById("NB_NAME_ERR").innerText = "Enter valid name";
-        document.getElementById("NB_NAME_ERR").style.color = "red";
-        ok = false;
+        if (!silent) {
+            err.innerText = "Only alphabets allowed (min 3 letters)";
+            err.style.color = "red";
+        }
+        return false;
     } else {
-        document.getElementById("NB_NAME_ERR").innerText = "";
+        if (!silent) err.innerText = "";
+        return true;
     }
+}
+
+/* ================= ACCOUNT ================= */
+function CHECK_NB_ACC(silent = false) {
+    let acc = document.getElementById("NB_ACC");
+    let err = document.getElementById("NB_ACC_ERR");
 
     acc.value = acc.value.replace(/[^0-9]/g, "");
+    acc.value = acc.value.slice(0, 18);
 
     if (acc.value.length < 8) {
-        document.getElementById("NB_ACC_ERR").innerText = "Minimum 8 digits required";
-        document.getElementById("NB_ACC_ERR").style.color = "red";
-        ok = false;
+        if (!silent) {
+            err.innerText = "Only numbers allowed (min 8 digits)";
+            err.style.color = "red";
+        }
+        return false;
+    } else {
+        if (!silent) {
+            err.innerText = "Account OK (XXXXXX" + acc.value.slice(-4) + ")";
+            err.style.color = "green";
+        }
+        return true;
     }
-    else if (acc.value.length > 18) {
-        acc.value = acc.value.slice(0, 18);
-        ok = false;
-    }
-    else if (acc.value.length === 18) {
-        let maskedAcc = "XXXXXX" + acc.value.slice(-4);
-        document.getElementById("NB_ACC_ERR").innerText =
-            "Account OK (" + maskedAcc + ")";
-        document.getElementById("NB_ACC_ERR").style.color = "green";
-        ok = true;
-    }
-    else {
-        document.getElementById("NB_ACC_ERR").innerText = "";
-    }
+}
+
+/* ================= IFSC ================= */
+function CHECK_NB_IFSC(silent = false) {
+    let ifsc = document.getElementById("NB_IFSC");
+    let err = document.getElementById("NB_IFSC_ERR");
 
     ifsc.value = ifsc.value.toUpperCase();
-    let ifscPattern = /^[A-Z]{4}0[A-Z0-9]{6}$/;
+    let pattern = /^[A-Z]{4}0[A-Z0-9]{6}$/;
 
-    if (!ifscPattern.test(ifsc.value)) {
-        document.getElementById("NB_IFSC_ERR").innerText = "Invalid IFSC code";
-        document.getElementById("NB_IFSC_ERR").style.color = "red";
-        ok = false;
+    if (!pattern.test(ifsc.value)) {
+        if (!silent) {
+            err.innerText = "Invalid IFSC (format: ABCD0XXXXXX)";
+            err.style.color = "red";
+        }
+        return false;
     } else {
-        document.getElementById("NB_IFSC_ERR").innerText = "";
-        document.getElementById("PAYMENT_SELECT").valuedisabled = true;
+        if (!silent) err.innerText = "";
+        return true;
     }
+}
+function CHECK_NETBANKING() {
+    let btn = document.getElementById("NB_PAY_BTN");
+
+    // 🔴 hard check for empty fields
+    if (
+        document.getElementById("NB_BANK").value === "" ||
+        document.getElementById("NB_NAME").value.trim() === "" ||
+        document.getElementById("NB_ACC").value.trim() === "" ||
+        document.getElementById("NB_IFSC").value.trim() === ""
+    ) {
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+        btn.style.cursor = "not-allowed";
+        return;
+    }
+
+    let ok =
+        CHECK_NB_BANK(true) &&
+        CHECK_NB_NAME(true) &&
+        CHECK_NB_ACC(true) &&
+        CHECK_NB_IFSC(true);
 
     btn.disabled = !ok;
     btn.style.opacity = ok ? "1" : "0.5";
     btn.style.cursor = ok ? "pointer" : "not-allowed";
-
 }
-function PYMENT_BTN()
-    {
-        
-    }
+
+function DISABLE_ALL_PAYMENT() {
+
+    // UPI
+    document.getElementById("UPI_INPUT").disabled = true;
+    document.getElementById("UPI_PYMENT").disabled = true;
+
+    // CASH
+    document.getElementById("CASH_PAY_BTN").disabled = true;
+
+    // CARD
+    document.getElementById("CARD_NO").disabled = true;
+    document.getElementById("CARD_NAME").disabled = true;
+    document.getElementById("CARD_EXP").disabled = true;
+    document.getElementById("CARD_CVV").disabled = true;
+    document.getElementById("CARD_PAY_BTN").disabled = true;
+
+    // NET BANKING
+    document.getElementById("NB_BANK").disabled = true;
+    document.getElementById("NB_NAME").disabled = true;
+    document.getElementById("NB_ACC").disabled = true;
+    document.getElementById("NB_IFSC").disabled = true;
+    document.getElementById("NB_PAY_BTN").disabled = true;
+}

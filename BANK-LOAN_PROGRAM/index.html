@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Loan EMI Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="MAIN_BOX">
+        <BUTTON id="PRINT" disabled onclick="printResult()">PRINT</BUTTON>
+
+
+        <label>Loan Amount:</label>
+        <input type="text" id="LOAN_AMOUNT" placeholder="10,00,000" oninput="LOAN_CHECK(this)" >
+        <span id="ERR_LOAN" class="error"></span>
+
+        <label>Annual Interest Rate(%):</label>
+        <input type="text" id="ANNUAL_I_R" placeholder="2.4" oninput="RATE_CHECK(this)">
+        <span id="ERR_RATE" class="error"></span>
+
+        <label>Tenure (In Year):</label>
+        <input type="text" id="TENURE_IN_YEAR" placeholder="10" oninput="YEAR_CHECK(this)">
+        <span id="ERR_YEAR" class="error"></span>
+
+        <button id="CALCULET_EMI" onclick="calculateEMI()" disabled>
+            Calculate EMI
+        </button>
+
+        <div id="RESULT_BOX">
+
+            <div class="result-row">
+                <span class="O_P"> Original Principal Amount :</span>
+                <span id="R_PRINCIPAL">₹0</span>
+                <span id="P_AMOUNT"></span>
+            </div>
+
+            <div class="result-row">
+                Annual Interest Rate :
+                <span id="R_RATE">0%</span>
+                <span>Rate</span>
+
+            </div>
+
+            <div class="result-row">
+                Total Months :
+                <span id="R_MONTHS">0</span>
+                <span>Months</span>
+
+            </div>
+
+            <div class="result-row">
+                Monthly EMI Amount :
+                <span id="R_EMI">₹0</span>
+                <span id="M_AMOUNT"></span>
+
+            </div>
+
+            <div class="result-row">
+                Total Interest Amount :
+                <span id="R_INTEREST">₹0</span>
+                <span id="I_AMOUNT"></span>
+
+            </div>
+
+            <div class="result-row">
+                Total Amount Payable :
+                <span id="R_TOTAL">₹0</span>
+                <span id="t_p_AMOUNT"></span>
+
+            </div>
+            <BUTTON id="FINAL" onclick="goToForeclosure()">Pay Full</BUTTON>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>EMI (₹)</th>
+                        <th>Principal (₹)</th>
+                        <th>Interest (₹)</th>
+                        <th>Balance (₹)</th>
+                    </tr>
+                </thead>
+                <tbody id="EMI_TABLE_BODY">
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

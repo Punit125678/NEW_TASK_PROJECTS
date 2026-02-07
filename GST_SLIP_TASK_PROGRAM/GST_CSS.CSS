@@ -1,0 +1,387 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+
+body {
+    background-color: #f4f6fb;
+}
+
+#MAIN_BOX {
+    background-color: #ffffff;
+    border: 2px solid #1f3c88;
+}
+
+.HEADING {
+    background-color: #1f3c88;
+    color: white;
+    border-bottom: none;
+}
+
+.HEADING h1 {
+    letter-spacing: 1px;
+}
+
+.HEADING h3 {
+    font-weight: 400;
+}
+
+.RECEPET_HEDING {
+    background-color: #e8f0fe;
+    border-top: 2px solid #1f3c88;
+    border-bottom: 2px solid #1f3c88;
+}
+
+.RECEPET_HEDING h3 {
+    color: #1f3c88;
+}
+
+#DATE input {
+    border: 1px solid #1f3c88;
+    padding: 5px;
+}
+
+#S_NAME {
+    color: #1f3c88;
+    font-weight: 600;
+}
+
+.INNER_ROW_COLOUM {
+    border: 1px solid #1f3c88;
+}
+
+.row {
+    border-bottom: 1px solid #c3cbe6;
+}
+
+.row h3,
+.row span {
+    color: #222;
+}
+
+.row h2 {
+    color: #1f3c88;
+}
+
+#ALL_INPUT_BOX {
+    border-left: 1px solid #1f3c88;
+    background-color: #f9fbff;
+}
+
+#ALL_INPUT_BOX h2 {
+    color: #1f3c88;
+}
+
+input,
+select {
+    border: 1px solid #9aa7d9;
+    border-radius: 4px;
+}
+
+.FOOTER button {
+    background-color: #2ec4b6;
+    color: #000;
+}
+
+.FOOTER button:hover {
+    background-color: #1fa89a;
+    cursor: pointer;
+}
+
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#MAIN_BOX {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50vw;
+    height: auto;
+    border: 2px solid black;
+}
+
+.HEADING {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 14vh;
+    border-bottom: 2px solid black;
+}
+
+.RECEPET_HEDING {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3vh;
+    border-top: 1px solid black;
+    box-sizing: border-box;
+    padding: 1rem;
+
+}
+
+.RECEPET_HEDING h3 {
+    font-weight: 600;
+    font-size: 28px;
+
+}
+
+#DATE {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    /* border-top: 1px solid black;
+    border-bottom: 1px solid black; */
+
+    width: 100%;
+    height: 5vh;
+    padding-right: 2rem;
+    box-sizing: border-box;
+}
+
+#DATE input {
+    width: 150px;
+    height: 25px;
+}
+
+#NAME_OF_STUDENT {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 7vh;
+    width: 100%;
+    gap: 5px;
+    padding-left: 2rem;
+
+}
+
+#NAME_OF_STUDENT input {
+    width: 40%;
+    height: 30px;
+}
+
+#S_NAME {
+    font-size: 2rem;
+}
+
+#COLOUMS_ROWS {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40%;
+    box-sizing: border-box;
+    margin-top: 2rem;
+
+}
+
+.INNER_ROW_COLOUM {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 86%;
+    height: auto;
+    border: 1px solid black;
+    box-sizing: border-box;
+
+}
+
+#COURSE_DEATIELS {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 7px;
+    width: 60%;
+    height: auto;
+    padding-top: -10px;
+    /* padding: 1rem; */
+}
+
+#ALL_INPUT_BOX {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    /* gap: 3px; */
+    width: 30%;
+    height: auto;
+    border-left: 1px solid black;
+    padding-bottom: 1rem;
+    /* padding-left: 4px; */
+
+}
+
+#ALL_INPUT_BOX input,
+#ALL_INPUT_BOX select {
+    width: 117%;
+    height: 39px;
+    /* padding-left: 10px; */
+    box-sizing: border-box;
+}
+
+#ALL_INPUT_BOX h2 {
+    padding-top: 8px;
+    padding-bottom: 12.3px;
+    padding-left: 25%;
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 8px; */
+    border-bottom: 1px solid black;
+    width: 108%;
+    height: 32px;
+    box-sizing: border-box;
+    padding-right: 12rem;
+    margin-left: -8%;
+
+
+    /* margin: 8px 0; */
+}
+
+.row h2 {
+    text-align: start;
+    position: absolute;
+    padding-left: 10px;
+    margin-top: -19px;
+
+}
+
+.row h3 {
+    font-weight: 600;
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 5px;
+
+
+}
+
+/* .row span,
+.row select {
+    width: 50%;
+    border-bottom: 1px solid black;
+    min-height: 22px;
+}  */
+.row span {
+    font-weight: 600;
+    font-size: 22px;
+    font-style: normal;
+}
+
+.FOOTER {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 125px;
+}
+
+.FOOTER button {
+    width: 110px;
+    height: 35px;
+    border-radius: 6px;
+    border: none;
+    background-color: #95d8d2;
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#RANDOM_GST_CREATE {
+    width: 300px;
+    height: 300px;
+    border: 2px solid black;
+    position: absolute;
+    right: 9%;
+    top: 25%;
+    display: none;
+}
+@media print {
+
+    /* Poora page clean */
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    /* Sirf MAIN_BOX print ho */
+    body * {
+        visibility: hidden;
+    }
+
+    #MAIN_BOX, #MAIN_BOX * {
+        visibility: visible;
+    }
+
+    #MAIN_BOX {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 380px;     /* fixed receipt width */
+        border: 2px solid black;
+        padding: 10px;
+    }
+
+    /* Buttons print me hide */
+    button {
+        display: none !important;
+    }
+
+    /* Inputs print me text jaise dikhein */
+    input, select {
+        border: none !important;
+        outline: none !important;
+        background: transparent !important;
+        font-size: 14px;
+        color: black;
+        padding: 0;
+    }
+
+    /* Select arrow remove */
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    /* Table / rows alignment */
+    table, tr, td {
+        border-collapse: collapse;
+    }
+}
+
+#GST_CRAEATE_BTN
+    {
+        width: 100px;
+        height: 32px;
+        position: absolute;
+        right: 19.5%;
+        top: 20%;
+        border-radius: 5px;
+        border: none;
+        box-shadow:   1px 8px 15px  black;
+        font-weight: 600;
+    }
+#GST_CRAEATE_BTN:hover
+    {
+        background-color: #78c0df;
+        color: white;
+    }
