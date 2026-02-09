@@ -12,17 +12,17 @@
     <div id="MAIN_BODY">
         <div id="MAIN_RECHERGE_PALN">
             <div class="COLOUMS">
-                <span>Customer Name :- </span><input type="text" id="CUSTOMER_NAME" oninput="NULL_FIELDS()"><br>
+                <span>Customer Name :- </span><input type="text" id="CUSTOMER_NAME"><br>
                 <p id="NAME_ERROR"></p>
             </div>
             <div class="COLOUMS">
-                <span>Mobile Number :- </span><input type="text" id="MOBILE_NUMBER" oninput="NUM_ERRORR()">
+                <span>Mobile Number :- </span><input type="text" id="MOBILE_NUMBER">
                 <p id="NUM_ERROR"></p>
 
             </div>
             <div class="COLOUMS">
                 <span>Recharge plan :- </span>
-                <select id="R_PLAN" onchange="CHEAK_SELECT()">
+                <select id="R_PLAN">
                     <option value="">Select Plan</option>
                     <option value="199">₹199</option>
                     <option value="299">₹299</option>
@@ -75,7 +75,7 @@
 
             <div class="upi-row">
                 <label>Enter UPI ID :-</label>
-                <input type="text" id="UPI_INPUT" placeholder="yourname@upi" oninput="CHECK_UPI()">
+                <input type="text" id="UPI_INPUT" placeholder="yourname@upi">
                 <p id="UPI_ERROR"></p>
 
 
@@ -97,31 +97,28 @@
 
             <div class="row">
                 <label>Card Number :-</label>
-                <input type="text" id="CARD_NO" placeholder="1234567812345678"
-                    oninput="CHEAK_card_number(); CHECK_CARD()" />
+                <input type="text" id="CARD_NO" placeholder="1234567812345678" />
 
                 <p id="CARD_NO_ERR"></p>
             </div>
 
             <div class="row">
                 <label>Card Holder Name :-</label>
-                <input type="text" id="CARD_NAME" placeholder="Name on Card"
-                    oninput="CHEAK_CARD_NAME(); CHECK_CARD()" />
+                <input type="text" id="CARD_NAME" placeholder="Name on Card" />
 
                 <p id="CARD_NAME_ERR"></p>
             </div>
 
             <div class="row">
                 <label>Expiry Date :-</label>
-                <input type="month" id="CARD_EXP" onchange="CHEAK_CARD_DATE(); CHECK_CARD()" />
+                <input type="month" id="CARD_EXP" />
 
                 <p id="CARD_EXP_ERR"></p>
             </div>
 
             <div class="row">
                 <label>CVV :-</label>
-                <input type="password" id="CARD_CVV" placeholder="***" maxlength="3"
-                    oninput="CHEAK_CVV(); CHECK_CARD()" />
+                <input type="password" id="CARD_CVV" placeholder="***" maxlength="3" />
 
                 <p id="CARD_CVV_ERR"></p>
             </div>
@@ -137,7 +134,7 @@
 
             <div class="row">
                 <label>Select Bank :-</label>
-                <select id="NB_BANK" onchange="CHECK_NB_BANK(); CHECK_NETBANKING()" onblur="CHECK_NETBANKING()">
+                <select id="NB_BANK">
 
                     <option value="">Select Bank</option>
                     <option>SBI</option>
@@ -151,24 +148,21 @@
 
             <div class="row">
                 <label>Account Holder Name :-</label>
-                <input type="text" id="NB_NAME" placeholder="Enter account holder name"
-                    oninput="CHECK_NB_NAME(); CHECK_NETBANKING()" onblur="CHECK_NETBANKING()">
+                <input type="text" id="NB_NAME" placeholder="Enter account holder name">
 
                 <p id="NB_NAME_ERR"></p>
             </div>
 
             <div class="row">
                 <label>Account Number :-</label>
-                <input type="text" id="NB_ACC" placeholder="Enter account number"
-                    oninput="CHECK_NB_ACC(); CHECK_NETBANKING()" onblur="CHECK_NETBANKING()">
+                <input type="text" id="NB_ACC" placeholder="Enter account number">
 
                 <p id="NB_ACC_ERR"></p>
             </div>
 
             <div class="row">
                 <label>IFSC Code :-</label>
-                <input type="text" id="NB_IFSC" placeholder="e.g. SBIN0001234"
-                    oninput="CHECK_NB_IFSC(); CHECK_NETBANKING()" onblur="CHECK_NETBANKING()">
+                <input type="text" id="NB_IFSC" placeholder="e.g. SBIN0001234">
 
                 <p id="NB_IFSC_ERR"></p>
             </div>

@@ -49,7 +49,7 @@ function year_select()
     if(year > 0)
     {
         document.getElementById("EPD").disabled = true;
-        document.getElementById("EAD").disabled = true;
+        document.getElementById("PRD").disabled = true;
         document.getElementById("cl_yes").disabled = true;
         document.getElementById("cl_no").disabled = true;
         leapMsg.innerText = "";
@@ -94,7 +94,7 @@ function setDays()
         document.getElementById("TRAVEL").value = "";
         document.getElementById("Total_sallary").value = "";
         document.getElementById("EPD").disabled = true;
-        document.getElementById("EAD").disabled = true;
+        document.getElementById("PRD").disabled = true;
         document.getElementById("cl_yes").disabled = true;
         document.getElementById("cl_no").disabled = true;
          document.getElementById("hrinput").value = "";
@@ -139,7 +139,7 @@ function setDays()
     
     daysInput.value = days;
         document.getElementById("EPD").disabled = false;
-        document.getElementById("EAD").disabled = false;
+        document.getElementById("PRD").disabled = false;
         // document.getElementById("cl_yes").disabled = null;
         // document.getElementById("cl_no").disabled = null;
     //  leapMsg.innerText = "Year is Not Leap Year";
@@ -151,15 +151,15 @@ function setDays()
 function REMENING_DYS()
 {
     let totalDays = setDays();
-    let absentInput = document.getElementById("EAD");
+    let prdInput = document.getElementById("PRD");
     let error = document.getElementById("EAD_ERROR");
-    let prd = document.getElementById("PRD");
+    let ead = document.getElementById("EAD");
 
-    let absent = +absentInput.value;
+    let presentDays = +prdInput.value;
 
-    if (absentInput.value == 0)
+    if (prdInput.value == 0 || prdInput.value == "")
     {
-        prd.value = "";
+        ead.value = "";
         document.getElementById("Total_sallary").value = "";
         error.innerText = "";
         document.getElementById("EPD").value = "";
@@ -174,38 +174,40 @@ function REMENING_DYS()
         hideExtra();
         resetSalary()
         
-        return;
+        return 0;
     }
 
-    if (absent < 0)
+    if (presentDays < 0)
     {
-        error.innerText = "Absent days cannot be negative";
-        absentInput.style.border = "2px solid red";
-        prd.value = "";
+        error.innerText = "Present days cannot be negative";
+        prdInput.style.border = "2px solid red";
+        ead.value = "";
         hideExtra();
         resetSalary()
         return 0;
     }
 
-    if (absent > totalDays)
+    if (presentDays > totalDays)
     {
-        error.innerText = "Enter valid absent days";
-        absentInput.style.border = "2px solid red";
-        prd.value = "";
-        hideExtra();
-        resetSalary()
-        return 0;
+        prdInput.value = totalDays;
+        error.innerText = "Present days exceed total. Auto-set to " + totalDays;
+        error.style.color = "orange";
+        prdInput.style.border = "2px solid orange";
+        presentDays = totalDays;
+    }
+    else
+    {
+        error.innerText = "";
+        prdInput.style.border = "2px solid green";
     }
 
+    let absentDays = totalDays - presentDays;
+    ead.value = absentDays;
     
-    error.innerText = "";
-    absentInput.style.border = "2px solid green";
-    
+    document.getElementById("cl_yes").disabled = false;
+    document.getElementById("cl_no").disabled = false;
 
-    let remainingDays = totalDays - absent;
-    prd.value = remainingDays;
-
-    return remainingDays;
+    return presentDays;
 }
 
 
@@ -341,13 +343,29 @@ function calculateSalary()
 
     let basicSalary = perDay * days;
 
-
+    // Get allowance percentages and clamp them
     let HRp     = +document.getElementById("HR").value;
     let SDp     = +document.getElementById("SD").value;
     let FOCDp   = +document.getElementById("FOCD").value;
     let TRAVELp = +document.getElementById("TRAVEL").value;
     
+    // Set max limits for each allowance
+    const HR_MAX = 50;
+    const SD_MAX = 50;
+    const FOCD_MAX = 30;
+    const TRAVEL_MAX = 20;
     
+    // Clamp values to max
+    if (HRp > HR_MAX) HRp = HR_MAX;
+    if (SDp > SD_MAX) SDp = SD_MAX;
+    if (FOCDp > FOCD_MAX) FOCDp = FOCD_MAX;
+    if (TRAVELp > TRAVEL_MAX) TRAVELp = TRAVEL_MAX;
+    
+    // Update input fields with clamped values
+    document.getElementById("HR").value = HRp;
+    document.getElementById("SD").value = SDp;
+    document.getElementById("FOCD").value = FOCDp;
+    document.getElementById("TRAVEL").value = TRAVELp;
     
     let HR     = (basicSalary * HRp) / 100;
     let SD     = (basicSalary * SDp) / 100;
@@ -357,8 +375,6 @@ function calculateSalary()
     document.getElementById("sdinput").value = SD;
     document.getElementById("focdinput").value = FOCD;
     document.getElementById("travelinput").value = TRAVEL;
-
-    
 
     let totalSalary = basicSalary + HR + SD + FOCD + TRAVEL;
 

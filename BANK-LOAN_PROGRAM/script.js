@@ -13,10 +13,14 @@ function showError(errId, message, input) {
 
     if (errorTimer[errId]) {
         clearTimeout(errorTimer[errId]);
+        input.style.border = "2px solid green";
+
     }
 
     errorTimer[errId] = setTimeout(() => {
         err.classList.remove("show");
+        input.style.border = "2px solid green";
+
     }, 3000);
 }
 
@@ -36,13 +40,13 @@ function LOAN_CHECK(LOAN) {
     if (/[^0-9,]/.test(LOAN.value)) {
         LOAN.value = LOAN.value.replace(/[^0-9,]/g, "");
         showError("ERR_LOAN", "Only numbers allowed", LOAN);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
     if (LOAN.value.trim() === "") {
         showError("ERR_LOAN", "Loan amount required", LOAN);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
@@ -50,14 +54,14 @@ function LOAN_CHECK(LOAN) {
 
     if (amount < 50000) {
         showError("ERR_LOAN", "Minimum loan amount is 50,000", LOAN);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
     if (amount > 1000000000) {
         LOAN.value = (1000000000).toLocaleString("en-US");
         showError("ERR_LOAN", "Maximum loan amount is 100 Crore", LOAN);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
@@ -72,7 +76,7 @@ function YEAR_CHECK(YEAR) {
     if (/[^0-9]/.test(YEAR.value)) {
         YEAR.value = YEAR.value.replace(/[^0-9]/g, "");
         showError("ERR_YEAR", "Only numbers allowed", YEAR);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
@@ -94,7 +98,7 @@ function YEAR_CHECK(YEAR) {
     if (yearValue > 30) {
         YEAR.value = "30";
         showError("ERR_YEAR", "Maximum tenure is 30 years", YEAR);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
@@ -109,20 +113,20 @@ function RATE_CHECK(RATE) {
     if (/[^0-9.]/.test(RATE.value)) {
         RATE.value = RATE.value.replace(/[^0-9.]/g, "");
         showError("ERR_RATE", "Only numbers allowed", RATE);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
     if ((RATE.value.match(/\./g) || []).length > 1) {
         RATE.value = RATE.value.slice(0, -1);
         showError("ERR_RATE", "Only one dot allowed", RATE);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
     if (RATE.value.trim() === "") {
         showError("ERR_RATE", "Interest rate required", RATE);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
@@ -130,14 +134,14 @@ function RATE_CHECK(RATE) {
 
     if (rateValue < 0.1) {
         showError("ERR_RATE", "Minimum interest rate is 0.1%", RATE);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 
     if (rateValue > 30) {
         RATE.value = "30";
         showError("ERR_RATE", "Maximum interest rate is 30%", RATE);
-        btn.disabled = true;
+        // btn.disabled = true;
         return;
     }
 

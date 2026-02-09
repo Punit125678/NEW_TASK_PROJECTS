@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* ================= FORECLOSURE SECTION ================= */
         body {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
+            padding: 20px 0;
         }
 
         #FORECLOSURE_BOX {
@@ -234,28 +234,28 @@
         <h3>SBI Home Loan Foreclosure Details</h3>
         <div class="fc-row">
             <label>Enter Full Name :- </label>
-            <select id="FC_PREFIX" onchange="prefixChange()">
+            <select id="FC_PREFIX">
                 <option value="Mr">Mr</option>
                 <option value="Mrs">Mrs</option>
                 <option value="Miss">Miss</option>
             </select>
 
-            <input type="text" id="FC_NAME" oninput="nameInput()" placeholder="Enter Name">
-            <span id="ERR_NAME"></span>
+            <input type="text" id="FC_NAME" placeholder="Enter Name">
+            <p id="ERR_NAME" style="color:red; font-size:13px; display:none;" class="error"></p>
 
             <label>Loan Account Number:</label>
 
 
-            <input type="text" id="FC_ACCOUNT" placeholder="e.g. 12345678901" oninput="accountInput()">
+            <input type="text" id="FC_ACCOUNT" placeholder="e.g. 12345678901">
             <small>Enter SBI Home Loan Account Number</small>
-            <p id="accountError" style="color:red; font-size:13px; display:none;">
+            <p id="accountError" style="color:red; font-size:13px; display:none;" class="error">
                 Please enter only numbers (max 11 digits)
             </p>
         </div>
 
         <div class="fc-row">
             <label>Outstanding Principal (₹):</label>
-            <input type="text" id="FC_PRINCIPAL" oninput="principalInput()" placeholder="e.g. 5,20,000" >
+            <input type="text" id="FC_PRINCIPAL" placeholder="e.g. 5,20,000" >
             <p id="principalError" style="color:red; font-size:13px; display:none;" class="error">
             </p>
 
@@ -268,18 +268,18 @@
 
         <div class="fc-row">
             <label>Remaining Tenure (Months):</label>
-            <input type="number" id="FC_MONTHS" oninput="checkFCButton(); monthsInput()" placeholder="e.g. 60">
-            <p id="monthsError" style="color:red; font-size:13px; display:none;"></p>
+            <input type="number" id="FC_MONTHS" placeholder="e.g. 60">
+            <p id="monthsError" style="color:red; font-size:13px; display:none;" class="error"></p>
 
 
         </div>
 
         <div class="fc-row">
             <label>Foreclosure Charges (%):</label>
-            <input type="text" id="FC_RATE" value="" placeholder="0" oninput="checkFCButton() ;rateInput()">
+            <input type="text" id="FC_RATE" value="" placeholder="0">
 
             <small>SBI generally charges 0% for floating rate loans</small>
-            <p id="rateError" style="color:red; font-size:13px; display:none;"></p>
+            <p id="rateError" style="color:red; font-size:13px; display:none;" class="error"></p>
 
         </div>
 

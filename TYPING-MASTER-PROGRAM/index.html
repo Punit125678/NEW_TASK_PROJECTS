@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Master</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="MAIN_BOX">
+        <h2>Typing Master</h2>
+        <div id="LAVEL_DIV">
+            <h4>Difficulty Lavel : </h4>
+            <select id="level" onchange="loadParagraph()">
+                <option value="">Select Level</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+                <option value="custom">Custom Words</option>
+            </select>
+        </div>
+
+        <div id="CUSTOM_INPUT" style="display: none;">
+            <span>Enter Word Count :- </span><input type="text" id="costom_input">
+            <button id="costum_btn" onclick="LOAD_WORDS_BASIC()">Conform</button>
+        </div>
+
+        <div name="" id="SHOW_BOX"></div>
+        <div class="cheak_div">
+            <input type="checkbox" name="" id="MUTE_CHEAK" disabled><span>Mute Keyword Sounds.</span>
+        </div>
+        <div class="type-wrapper">
+            <div id="colorText"></div>
+            <textarea id="INPUT_TYPE" oninput="colorWords(); START_TIMER()" onscroll="syncScroll()"
+                onfocus="DISABLE_COPY_PASTE()" disabled></textarea>
+        </div>
+        <!-- <textarea name="TYPE_BOX" id="INPUT_TYPE"></textarea> -->
+        <div id="TYMING_BOX">
+            <h4 id="COUNT_TIME" style="color: #a0b3d1;">01:00:00</h4>
+            <div>
+                <button id="PAUSE_TIMER" onclick="CHEAK_BTN()" disabled>Pause Timer</button>
+                <button id="RESET_TIMER" onclick="RESET_TIMER(); START_TIMER()" disabled>Reset Timer</button>
+            </div>
+            <button id="SUMMID_BTN" onclick="CONFORM_BTN();ON_CONFORM_DISABLE()" disabled>Submit</button>
+        </div>
+        <div id="FOOTER_DIV">
+
+            <div class="HEAD_BOX">
+                <label>Correct Characters</label>
+                <input type="text" id="correctCharacters" readonly>
+
+                <label>Incorrect Characters</label>
+                <input type="text" id="incorrectCharacters" readonly>
+
+                <label>Skipped Characters</label>
+                <input type="text" id="skippedCharacters" readonly>
+            </div>
+
+            <div class="MID_BOX">
+                <label>Correct Words</label>
+                <input type="text" id="correctWords" readonly>
+
+                <label>Incorrect Words</label>
+                <input type="text" id="incorrectWords" readonly>
+
+                <label>Skipped Words</label>
+                <input type="text" id="skippedWords" readonly>
+            </div>
+
+            <div class="FOOTER_BOX">
+                <label>Total Accuracy (%)</label>
+                <input type="text" id="totalAccuracy" readonly>
+
+                <label>Words Per Minute (WPM)</label>
+                <input type="text" id="wpm" readonly>
+            </div>
+
+        </div>
+        
+
+
+    </div>
+    </div>
+    <audio controls style="display: none;">
+  <source src="audio.mp3" type="audio/mpeg">
+</audio>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

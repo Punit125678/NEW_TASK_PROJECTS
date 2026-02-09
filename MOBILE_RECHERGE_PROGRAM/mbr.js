@@ -1,3 +1,61 @@
+let NAME_OK = false;
+let NUMBER_OK = false;
+let PLAN_OK = false;
+let errorTimers = {};
+
+function SHOW_ERROR(id, message, seconds = 4) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.innerText = message;
+    el.style.display = "block";
+    el.style.color = "red";
+    el.classList.add("show");
+
+    if (errorTimers[id]) {
+        clearTimeout(errorTimers[id]);
+    }
+
+    errorTimers[id] = setTimeout(() => {
+        el.classList.remove("show");
+        el.style.display = "none";
+    }, seconds * 1000);
+}
+
+// Attach Event Listeners
+document.addEventListener("DOMContentLoaded", function() {
+    const customerName = document.getElementById("CUSTOMER_NAME");
+    const mobileNumber = document.getElementById("MOBILE_NUMBER");
+    const plan = document.getElementById("R_PLAN");
+    const upiInput = document.getElementById("UPI_INPUT");
+    const cardNo = document.getElementById("CARD_NO");
+    const cardName = document.getElementById("CARD_NAME");
+    const cardExp = document.getElementById("CARD_EXP");
+    const cardCvv = document.getElementById("CARD_CVV");
+    const nbBank = document.getElementById("NB_BANK");
+    const nbName = document.getElementById("NB_NAME");
+    const nbAcc = document.getElementById("NB_ACC");
+    const nbIfsc = document.getElementById("NB_IFSC");
+
+    if (customerName) customerName.addEventListener("input", NULL_FIELDS);
+    if (mobileNumber) mobileNumber.addEventListener("input", NUM_ERRORR);
+    if (plan) plan.addEventListener("change", CHEAK_SELECT);
+    if (upiInput) upiInput.addEventListener("input", CHECK_UPI);
+    if (cardNo) cardNo.addEventListener("input", () => { CHEAK_card_number(); CHECK_CARD(); });
+    if (cardName) cardName.addEventListener("input", () => { CHEAK_CARD_NAME(); CHECK_CARD(); });
+    if (cardExp) cardExp.addEventListener("change", () => { CHEAK_CARD_DATE(); CHECK_CARD(); });
+    if (cardCvv) cardCvv.addEventListener("input", () => { CHEAK_CVV(); CHECK_CARD(); });
+    if (nbBank) nbBank.addEventListener("change", () => { CHECK_NB_BANK(); CHECK_NETBANKING(); });
+    if (nbName) nbName.addEventListener("input", () => { CHECK_NB_NAME(); CHECK_NETBANKING(); });
+    if (nbAcc) nbAcc.addEventListener("input", () => { CHECK_NB_ACC(); CHECK_NETBANKING(); });
+    if (nbIfsc) nbIfsc.addEventListener("input", () => { CHECK_NB_IFSC(); CHECK_NETBANKING(); });
+    if (nbBank) nbBank.addEventListener("blur", CHECK_NETBANKING);
+    if (nbName) nbName.addEventListener("blur", CHECK_NETBANKING);
+    if (nbAcc) nbAcc.addEventListener("blur", CHECK_NETBANKING);
+    if (nbIfsc) nbIfsc.addEventListener("blur", CHECK_NETBANKING);
+});
+
+
 function INPUT_DEATIELS() {
 
     let name = document.getElementById("CUSTOMER_NAME").value;
@@ -156,21 +214,19 @@ document.getElementById("print_btn").onclick = function () {
     document.body.innerHTML = originalBody;
 };
 
-let NAME_OK = false;
-let NUMBER_OK = false;
-let PLAN_OK = false;
 function CHEAK_SELECT() {
     let plan = document.getElementById("R_PLAN").value;
     let err = document.getElementById("SELLCT_ERROR");
 
     if (plan === "") {
-        err.innerText = "Select a plan";
-        err.style.color = "red";
+        SHOW_ERROR("SELLCT_ERROR", "Select a plan", 3);
         document.getElementById("GST_AMOUNT").value = "";
-
         PLAN_OK = false;
     } else {
-        err.innerText = "";
+        err.style.display = "none";
+        err.classList.remove("show");
+        if (errorTimers["SELLCT_ERROR"]) clearTimeout(errorTimers["SELLCT_ERROR"]);
+        
         let gst = plan * 0.18;
         let total = Number(plan) + gst;
 
@@ -191,8 +247,7 @@ function NULL_FIELDS() {
     INPUT_NAME.value = INPUT_NAME.value.replace(/[^a-zA-Z\s]/g, "");
 
     if (originalValue !== INPUT_NAME.value) {
-        name_error.innerText = "Only letters allowed";
-        name_error.style.color = "red";
+        SHOW_ERROR("NAME_ERROR", "Only letters allowed", 3);
         INPUT_NAME.style.border = "2px solid red";
         NAME_OK = false;
         CHECK_ALL_FIELDS();
@@ -200,13 +255,14 @@ function NULL_FIELDS() {
     }
 
     if (INPUT_NAME.value.trim() === "") {
-        name_error.innerText = "Enter your name";
-        name_error.style.color = "red";
+        SHOW_ERROR("NAME_ERROR", "Enter your name", 3);
         INPUT_NAME.style.border = "2px solid red";
         NAME_OK = false;
     }
     else {
-        name_error.innerText = "";
+        name_error.style.display = "none";
+        name_error.classList.remove("show");
+        if (errorTimers["NAME_ERROR"]) clearTimeout(errorTimers["NAME_ERROR"]);
         INPUT_NAME.style.border = "2px solid green";
         NAME_OK = true;
     }
@@ -228,8 +284,7 @@ function NUM_ERRORR() {
     }
 
     if (originalValue !== INPUT_NUM.value) {
-        NUM_ERROR.innerText = "Only numbers allowed";
-        NUM_ERROR.style.color = "red";
+        SHOW_ERROR("NUM_ERROR", "Only numbers allowed", 3);
         INPUT_NUM.style.border = "2px solid red";
         NUMBER_OK = false;
         CHECK_ALL_FIELDS();
@@ -237,20 +292,19 @@ function NUM_ERRORR() {
     }
 
     if (INPUT_NUM.value === "") {
-        NUM_ERROR.innerText = "Enter mobile number";
-        NUM_ERROR.style.color = "red";
+        SHOW_ERROR("NUM_ERROR", "Enter mobile number", 3);
         INPUT_NUM.style.border = "2px solid red";
         NUMBER_OK = false;
     }
     else if (INPUT_NUM.value.length < 10) {
-        NUM_ERROR.innerText = "Enter 10 digit mobile number";
-        NUM_ERROR.style.color = "red";
+        SHOW_ERROR("NUM_ERROR", "Enter 10 digit mobile number", 3);
         INPUT_NUM.style.border = "2px solid red";
         NUMBER_OK = false;
     }
     else {
-        NUM_ERROR.innerText = "Valid Number";
-        NUM_ERROR.style.color = "green";
+        NUM_ERROR.style.display = "none";
+        NUM_ERROR.classList.remove("show");
+        if (errorTimers["NUM_ERROR"]) clearTimeout(errorTimers["NUM_ERROR"]);
         INPUT_NUM.style.border = "2px solid green";
         NUMBER_OK = true;
     }
@@ -283,20 +337,19 @@ function CHECK_UPI() {
     let upiPattern = /^[a-zA-Z0-9.\-_]{4,}@[a-zA-Z]{3,}$/;
 
     if (upi === "") {
-        upiError.innerText = "Enter UPI ID";
-        upiError.style.color = "red";
+        SHOW_ERROR("UPI_ERROR", "Enter UPI ID", 3);
         payBtn.disabled = true;
         payBtn.style.opacity = "0.5";
     }
     else if (!upiPattern.test(upi)) {
-        upiError.innerText = "Invalid UPI ID format";
-        upiError.style.color = "red";
+        SHOW_ERROR("UPI_ERROR", "Invalid UPI ID format", 3);
         payBtn.disabled = true;
         payBtn.style.opacity = "0.5";
     }
     else {
-        upiError.innerText = "Valid UPI ID";
-        upiError.style.color = "green";
+        upiError.style.display = "none";
+        upiError.classList.remove("show");
+        if (errorTimers["UPI_ERROR"]) clearTimeout(errorTimers["UPI_ERROR"]);
         payBtn.disabled = false;
         payBtn.style.opacity = "1";
     }
@@ -310,11 +363,12 @@ function CHEAK_card_number() {
     cardNo.value = cardNo.value.slice(0, 16);
 
     if (cardNo.value.length !== 16) {
-        err.innerText = "Enter 16 digit card number";
-        err.style.color = "red";
+        SHOW_ERROR("CARD_NO_ERR", "Enter 16 digit card number", 3);
         return false;
     } else {
-        err.innerText = "";
+        err.style.display = "none";
+        err.classList.remove("show");
+        if (errorTimers["CARD_NO_ERR"]) clearTimeout(errorTimers["CARD_NO_ERR"]);
         return true;
     }
 }
@@ -325,11 +379,12 @@ function CHEAK_CARD_NAME() {
     cardName.value = cardName.value.replace(/[^a-zA-Z\s]/g, "");
 
     if (cardName.value.trim().length < 3) {
-        err.innerText = "Enter valid name";
-        err.style.color = "red";
+        SHOW_ERROR("CARD_NAME_ERR", "Enter valid name", 3);
         return false;
     } else {
-        err.innerText = "";
+        err.style.display = "none";
+        err.classList.remove("show");
+        if (errorTimers["CARD_NAME_ERR"]) clearTimeout(errorTimers["CARD_NAME_ERR"]);
         return true;
     }
 }
@@ -338,11 +393,12 @@ function CHEAK_CARD_DATE() {
     let err = document.getElementById("CARD_EXP_ERR");
 
     if (exp.value === "") {
-        err.innerText = "Select expiry date";
-        err.style.color = "red";
+        SHOW_ERROR("CARD_EXP_ERR", "Select expiry date", 3);
         return false;
     } else {
-        err.innerText = "";
+        err.style.display = "none";
+        err.classList.remove("show");
+        if (errorTimers["CARD_EXP_ERR"]) clearTimeout(errorTimers["CARD_EXP_ERR"]);
         return true;
     }
 }
@@ -354,11 +410,12 @@ function CHEAK_CVV() {
     cvv.value = cvv.value.slice(0, 3);
 
     if (cvv.value.length !== 3) {
-        err.innerText = "Enter 3 digit CVV";
-        err.style.color = "red";
+        SHOW_ERROR("CARD_CVV_ERR", "Enter 3 digit CVV", 3);
         return false;
     } else {
-        err.innerText = "";
+        err.style.display = "none";
+        err.classList.remove("show");
+        if (errorTimers["CARD_CVV_ERR"]) clearTimeout(errorTimers["CARD_CVV_ERR"]);
         return true;
     }
 }
@@ -396,12 +453,13 @@ function CHECK_NB_BANK(silent = false) {
 
     if (bank.value === "") {
         if (!silent) {
-            err.innerText = "Select bank";
-            err.style.color = "red";
+            SHOW_ERROR("NB_BANK_ERR", "Select bank", 3);
         }
         return false;
     } else {
-        if (!silent) err.innerText = "";
+        err.style.display = "none";
+        err.classList.remove("show");
+        if (errorTimers["NB_BANK_ERR"]) clearTimeout(errorTimers["NB_BANK_ERR"]);
         return true;
     }
 }
@@ -415,12 +473,13 @@ function CHECK_NB_NAME(silent = false) {
 
     if (name.value.trim().length < 3) {
         if (!silent) {
-            err.innerText = "Only alphabets allowed (min 3 letters)";
-            err.style.color = "red";
+            SHOW_ERROR("NB_NAME_ERR", "Only alphabets allowed (min 3 letters)", 3);
         }
         return false;
     } else {
-        if (!silent) err.innerText = "";
+        err.style.display = "none";
+        err.classList.remove("show");
+        if (errorTimers["NB_NAME_ERR"]) clearTimeout(errorTimers["NB_NAME_ERR"]);
         return true;
     }
 }
@@ -435,13 +494,13 @@ function CHECK_NB_ACC(silent = false) {
 
     if (acc.value.length < 8) {
         if (!silent) {
-            err.innerText = "Only numbers allowed (min 8 digits)";
-            err.style.color = "red";
+            SHOW_ERROR("NB_ACC_ERR", "Only numbers allowed (min 8 digits)", 3);
         }
         return false;
     } else {
         if (!silent) {
             err.innerText = "Account OK (XXXXXX" + acc.value.slice(-4) + ")";
+            err.style.display = "block";
             err.style.color = "green";
         }
         return true;
@@ -458,12 +517,13 @@ function CHECK_NB_IFSC(silent = false) {
 
     if (!pattern.test(ifsc.value)) {
         if (!silent) {
-            err.innerText = "Invalid IFSC (format: ABCD0XXXXXX)";
-            err.style.color = "red";
+            SHOW_ERROR("NB_IFSC_ERR", "Invalid IFSC (format: ABCD0XXXXXX)", 3);
         }
         return false;
     } else {
-        if (!silent) err.innerText = "";
+        err.style.display = "none";
+        err.classList.remove("show");
+        if (errorTimers["NB_IFSC_ERR"]) clearTimeout(errorTimers["NB_IFSC_ERR"]);
         return true;
     }
 }

@@ -30,10 +30,10 @@
 </select>
 
 <input type="number" id="dayss" placeholder="Days" readonly>
+    <input type="number" placeholder="Employee Present Days" id="PRD" oninput="REMENING_DYS()" onclick="REMENING_DYS()" disabled>
 
-    <input type="number" placeholder="Employee Absent Days" id="EAD" onclick="REMENING_DYS()" oninput="REMENING_DYS()" disabled>
     <p id="EAD_ERROR"></p>
-    <input type="number" placeholder="Employee Present Days" id="PRD" readonly>
+        <input type="number" placeholder="Employee Absent Days" id="EAD" readonly disabled>
     <input type="number"  placeholder="Employee Per Days"id="EPD" oninput="INPUT_TYPE()" onkeyup="cheak_input()" disabled>
     <p id="salary_error"></p>
 
@@ -49,22 +49,22 @@
                 <input type="number" id="cl_dyas" placeholder="CL Days" oninput="AddEXTRA()">
                 
             <div class="hr">
-                 <input type="number" id="HR" placeholder="HR Allowance %" oninput="calculateSalary()">
+                 <input type="number" id="HR" placeholder="HR Allowance %" max="50" oninput="calculateSalary()">
                  <input type="number" id="hrinput">
             </div>
                
             <div class="sd">
-                <input type="number" id="SD" placeholder="SD Allowance %" oninput="calculateSalary()">
+                <input type="number" id="SD" placeholder="SD Allowance %" max="50" oninput="calculateSalary()">
                 <input type="number" id="sdinput">
             </div>
 
             <div class="focd">
-                <input type="number" id="FOCD" placeholder="FOCD Allowance %" oninput="calculateSalary()">
+                <input type="number" id="FOCD" placeholder="FOCD Allowance %" max="30" oninput="calculateSalary()">
                 <input type="number" id="focdinput">
             </div>
                 
             <div class="travel">
-                <input type="number" id="TRAVEL" placeholder="Travel Allowance %" oninput="calculateSalary()">
+                <input type="number" id="TRAVEL" placeholder="Travel Allowance %" max="20" oninput="calculateSalary()">
                 <input type="number" id="travelinput">
             </div>
                 

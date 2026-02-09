@@ -2,10 +2,20 @@ const fcPrincipal = document.getElementById("FC_PRINCIPAL");
 const fcMonths = document.getElementById("FC_MONTHS");
 const fcRate = document.getElementById("FC_RATE");
 const fcBtn = document.getElementById("FC_CALCULATE");
-let account = document.getElementById("FC_ACCOUNT").value;
+const fcAccount = document.getElementById("FC_ACCOUNT");
+const fcName = document.getElementById("FC_NAME");
+const fcPrefix = document.getElementById("FC_PREFIX");
 
+let errorTimers = {};
 
 fcBtn.disabled = true;
+
+if (fcAccount) fcAccount.addEventListener("input", accountInput);
+if (fcPrincipal) fcPrincipal.addEventListener("input", principalInput);
+if (fcMonths) fcMonths.addEventListener("input", monthsInput);
+if (fcRate) fcRate.addEventListener("input", rateInput);
+if (fcName) fcName.addEventListener("input", nameInput);
+if (fcPrefix) fcPrefix.addEventListener("change", prefixChange);
 function checkFCButton() {
 
     let principal = fcPrincipal.value;
@@ -43,21 +53,22 @@ function accountInput() {
 
     if (value.length > 11) {
         value = value.slice(0, 11);
-        error.style.display = "block";
-        error.innerText = "Account number can be max 11 digits";
+        SHOW_ERROR("accountError", "Account number can be max 11 digits", 5);
     } 
     else if (input.value !== value) {
-        error.style.display = "block";
-        error.innerText = "Only numbers are allowed";
+        SHOW_ERROR("accountError", "Only numbers are allowed", 5);
     } 
     else {
         error.style.display = "none";
+        error.classList.remove("show");
+        if (errorTimers["accountError"]) {
+            clearTimeout(errorTimers["accountError"]);
+        }
     }
 
     input.value = value;
+    checkFCButton();
 }
-
-let errorTimeout; 
 
 function principalInput() {
 
@@ -72,28 +83,31 @@ function principalInput() {
     const MIN = 10000;
     const MAX = 5000000;
 
-    function showError(msg) {
-        error.innerText = msg;
-        error.classList.add("show");
-
-        clearTimeout(errorTimeout);
-        errorTimeout = setTimeout(() => {
-            error.classList.remove("show");
-        }, 2000);
-    }
-
+    
     if (value === "") {
+        error.style.display = "none";
         error.classList.remove("show");
+        if (errorTimers["principalError"]) clearTimeout(errorTimers["principalError"]);
     }
     else if (amount < MIN) {
-        showError(`Minimum principal amount ₹${MIN.toLocaleString()}`);
+         SHOW_ERROR(
+        "principalError",
+        `Minimum principal amount ₹${MIN.toLocaleString()}`,
+        5
+    );
     }
     else if (amount > MAX) {
-        showError(`Maximum principal amount ₹${MAX.toLocaleString()}`);
+         SHOW_ERROR(
+        "principalError",
+        `Maximum principal amount ₹${MAX.toLocaleString()}`,
+        5
+    );
         fcPrincipal.value = MAX;
     }
     else {
+        error.style.display = "none";
         error.classList.remove("show");
+        if (errorTimers["principalError"]) clearTimeout(errorTimers["principalError"]);
     }
 
     checkFCButton();
@@ -122,18 +136,18 @@ function rateInput() {
 
     if (value === "") {
         error.style.display = "none";
+        error.classList.remove("show");
     }
     else if (rate < MIN) {
-        error.style.display = "block";
-        error.innerText = "Rate cannot be negative";
+        SHOW_ERROR("rateError", "Rate cannot be negative", 4);
     }
     else if (rate > MAX) {
-        error.style.display = "block";
-        error.innerText = `Foreclosure charge cannot exceed ${MAX}%`;
+        SHOW_ERROR("rateError", `Foreclosure charge cannot exceed ${MAX}%`, 4);
         input.value = MAX;
     }
     else {
         error.style.display = "none";
+        error.classList.remove("show");
     }
 
     checkFCButton();
@@ -156,18 +170,18 @@ function monthsInput() {
 
     if (value === "") {
         error.style.display = "none";
+        error.classList.remove("show");
     }
     else if (months < MIN) {
-        error.style.display = "block";
-        error.innerText = ` Minimum tenure is ${MIN} month`;
+        SHOW_ERROR("monthsError", `Minimum tenure is ${MIN} month`, 4);
     }
     else if (months > MAX) {
-        error.style.display = "block";
-        error.innerText = ` Maximum tenure is ${MAX} months`;
+        SHOW_ERROR("monthsError", `Maximum tenure is ${MAX} months`, 4);
         input.value = MAX;  
     }
     else {
         error.style.display = "none";
+        error.classList.remove("show");
     }
 
     checkFCButton();
@@ -186,6 +200,29 @@ function calculateForeclosure() {
 
     showNOCLetter(principal);
 }
+function SHOW_ERROR(id, message, seconds = 4) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.innerText = message;
+    el.style.display = "block";
+    el.classList.add("show");
+
+    if (errorTimers[id]) {
+        clearTimeout(errorTimers[id]);
+    }
+
+    errorTimers[id] = setTimeout(() => {
+        el.classList.remove("show");
+        el.style.display = "none";
+
+       
+        checkFCButton();
+
+    }, seconds * 1000);
+}
+
+
 function nameInput() {
 
     let nameField = document.getElementById("FC_NAME");
@@ -194,12 +231,15 @@ function nameInput() {
     let value = nameField.value;
 
     if (/[^a-zA-Z\s]/.test(value)) {
-        err.innerText = "Only alphabets allowed";
-        err.style.color = "red";
+        SHOW_ERROR("ERR_NAME", "Only alphabets allowed", 3);
         nameField.style.border = "2px solid red";
     } else {
-        err.innerText = "";
+        err.style.display = "none";
+        err.classList.remove("show");
         nameField.style.border = "";
+        if (errorTimers["ERR_NAME"]) {
+            clearTimeout(errorTimers["ERR_NAME"]);
+        }
     }
 
     value = value.replace(/[^a-zA-Z\s]/g, "");
@@ -207,6 +247,7 @@ function nameInput() {
     value = value.replace(/\s+/g, " ").trim();
 
     nameField.value = value;
+    checkFCButton();
 }
 
 function prefixChange() {
@@ -287,3 +328,4 @@ function numberToWords(num) {
 
     return words;
 }
+
