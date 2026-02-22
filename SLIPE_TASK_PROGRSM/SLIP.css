@@ -1,133 +1,109 @@
-*
-{
-    font-family: sans-serif;
-    font-weight: 600;
-    color: black;
-}
-body
-{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4eeee;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:sans-serif;
 }
 
-.main_box
-    {
-        width: 30vw;
-        height: auto;
-        border: 2px solid black;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 15px;
-        padding-top: 2.5rem;
-        padding-bottom: 2.5rem;
-        border-radius: 8px;
-        box-shadow: 7px 7px 15px black;
-              background-color: #d1dadc;
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:40px 0;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+}
 
-    }
+/* ===== MAIN CARD ===== */
+.main_box{
+    width:480px;              
+    background:#ffffff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
 
+/* ===== LABEL ===== */
+label{
+    font-size:13px;
+    font-weight:600;
+    margin-top:10px;
+    display:block;
+    color:#333;
+}
+
+/* ===== INPUT / SELECT ===== */
 .main_box input,
-.main_box select
-{
-    border: 2px solid black;
-    width: 60%;
-    height: 35px;
-    border-radius: 5px;
-    padding-left: 20px;
-}
-.main_box select   
- {
-     width: 66.6%;
-    height: 41px;
-
+.main_box select{
+    width:100%;
+    height:32px;
+    padding-left:10px;
+    margin-top:5px;
+    border-radius:6px;
+    border:1px solid #bbb;
+    font-size:13px;
+    transition:0.3s;
 }
 
-
-.radio_click
-    {
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        width: 60%;
-        gap: 10px;
-
-    }
-
-.radio_click input
-    {
-        width: 16px;
-        height: 16px;
-    }
-
-#Extra
-{
-    width: auto;
-    display: none;
-    grid-template-columns: repeat(2.2fr);
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    gap: 10px;
+.main_box input:focus,
+.main_box select:focus{
+    border-color:#2a5298;
+    box-shadow:0 0 4px rgba(42,82,152,0.4);
 }
 
-#Extra input
-    {
-        width: 49%;
-        height: 40px;
-        background-color: #fff;
-        color: black;
-        border-radius: 5px;
-        padding-left: 20px;
-        box-sizing: border-box;
-    }
-
-#cl_dyas
-    {
-        width: 99% !important;
-        height: 55px;
-        padding-right: 100px;
-    }
-
-.radio_click input[type="radio"]
-{
-    accent-color: gray;  
+input[readonly]{
+    background:#f2f2f2;
 }
 
-.radio_click input[type="radio"]:checked
-{
-    accent-color: green; 
+/* ===== HR SD FOCD TRAVEL ROW ===== */
+.hr,
+.sd,
+.focd,
+.travel{
+    display:flex;
+    gap:5px;
 }
-#EAD
-    {
-        border: 2px solid black;
-    }
-#EAD_ERROR
-    {
-        position: absolute;
-        /* background-color: #fff; */
-           margin: 0;
-    padding: 0;
-    position: relative;
-    right: 14%;
-    color: red;
-    margin-top: -10px;
-    margin-bottom: -9px;
-    }
-p
-{
-    margin-top: -4px;
-    margin-bottom: -4px;
-    margin-right: 6rem;
-    
+
+.hr input,
+.sd input,
+.focd input,
+.travel input{
+    width:50%;
 }
-#leap_year
-    {
-        margin-right: 14rem;
-    }
+
+/* ===== RADIO ===== */
+.radio_click{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:10px;
+    font-size:13px;
+}
+
+.radio_click input{
+    width:14px;
+    height:14px;
+}
+
+/* ===== CL BOX ===== */
+#Extra{
+    display:none;
+}
+
+#CL_DYS_BOX{
+    display:none;
+    gap:5px;
+}
+
+/* ===== ERROR TEXT ===== */
+p{
+    font-size:11px;
+    color:red;
+    margin-top:2px;
+}
+
+/* ===== FINAL SALARY ===== */
+#Total_sallary{
+    font-weight:bold;
+    background:#e8f1ff;
+}

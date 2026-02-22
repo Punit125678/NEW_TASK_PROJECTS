@@ -22,8 +22,7 @@ function SHOW_ERROR(id, message, seconds = 4) {
     }, seconds * 1000);
 }
 
-// Attach Event Listeners
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const customerName = document.getElementById("CUSTOMER_NAME");
     const mobileNumber = document.getElementById("MOBILE_NUMBER");
     const plan = document.getElementById("R_PLAN");
@@ -91,7 +90,7 @@ function PAYMENT_METHOD() {
 
     if (P_METHOD == "upi") {
         document.getElementById("PAYMENT_BOX").style.display = "flex";
-        
+
     }
     else if (P_METHOD == "card") {
         document.getElementById("CARD_PAYMENT").style.display = "block";
@@ -106,35 +105,35 @@ function PAYMENT_METHOD() {
         PYMENT_BOX_DISEVLE();
     }
 }
- function SHOW_LOADER() {
-            document.getElementById("LOADER").style.display = "flex";
-
-        
-            setTimeout(function() {
-                document.getElementById("LOADER").style.display = "none";
-            }, 2000);
-        }
-
-
-function FINAL_PAYMENT(paymentMode) {
-        document.getElementById("PAYMENT_SELECT").disabled = true;
-        DISABLE_ALL_PAYMENT();
-        SHOW_LOADER();
+function SHOW_LOADER() {
+    document.getElementById("LOADER").style.display = "flex";
 
 
     setTimeout(function () {
-        
-    Swal.fire({
-        icon: 'success',
-        title: 'Payment Successful!',
-        text: paymentMode,
-        timer: 1500,
-        showConfirmButton: false
-    });
+        document.getElementById("LOADER").style.display = "none";
+    }, 2000);
+}
+
+
+function FINAL_PAYMENT(paymentMode) {
+    document.getElementById("PAYMENT_SELECT").disabled = true;
+    DISABLE_ALL_PAYMENT();
+    SHOW_LOADER();
+
+
+    setTimeout(function () {
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Payment Successful!',
+            text: paymentMode,
+            timer: 1500,
+            showConfirmButton: false
+        });
     }, 2500);
-    setTimeout(function (){
+    setTimeout(function () {
         SHOW_SUMMARY(paymentMode);
-    },3500);
+    }, 3500);
 }
 function SHOW_SUMMARY(paymentMode) {
 
@@ -200,7 +199,7 @@ function SHOW_SUMMARY(paymentMode) {
             "<b>Cash Payment</b><br>" +
             "Payment will be collected in cash";
     }
-   
+
     document.getElementById("SUMMARY_BOX").style.display = "block";
 }
 
@@ -226,7 +225,7 @@ function CHEAK_SELECT() {
         err.style.display = "none";
         err.classList.remove("show");
         if (errorTimers["SELLCT_ERROR"]) clearTimeout(errorTimers["SELLCT_ERROR"]);
-        
+
         let gst = plan * 0.18;
         let total = Number(plan) + gst;
 
@@ -284,11 +283,11 @@ function NUM_ERRORR() {
     }
 
     if (originalValue !== INPUT_NUM.value) {
-        SHOW_ERROR("NUM_ERROR", "Only numbers allowed", 3);
+        SHOW_ERROR("NUM_ERROR", "Only numbers allowed", 2);
         INPUT_NUM.style.border = "2px solid red";
-        NUMBER_OK = false;
-        CHECK_ALL_FIELDS();
-        return;
+        // NUMBER_OK = false;
+        // CHECK_ALL_FIELDS();
+        // return;
     }
 
     if (INPUT_NUM.value === "") {

@@ -214,6 +214,15 @@ input,select,textarea,button    {
     border-radius: 5px;
     opacity: 0.5;
 }
+select:disabled,
+textarea:disabled,
+button:disabled {
+    background-color: #aba4a4 !important;
+    color: #888 !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
+
 
 #Delete_btn:hover,
 #CHEAK_BTN:hover {

@@ -3,6 +3,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    /* font-family: monospace; */
+
 }
 
 body {
@@ -10,17 +12,15 @@ body {
     min-height: 100vh;
 }
 
-/* MAIN CONTAINER */
 #MAIN_BOX {
     width: 850px;
     margin: 30px auto;
     background: #ffffff;
     padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
 
-/* HEADINGS */
 #MAIN_BOX h2 {
     text-align: center;
     margin-bottom: 15px;
@@ -30,14 +30,12 @@ body {
     margin-bottom: 8px;
 }
 
-/* SELECT */
 select {
     width: 220px;
     padding: 6px;
     margin-bottom: 15px;
 }
 
-/* CUSTOM INPUT */
 #CUSTOM_INPUT {
     margin-bottom: 15px;
     display: none;
@@ -58,7 +56,6 @@ select {
     border-radius: 4px;
 }
 
-/* SHOW BOX */
 #SHOW_BOX {
     width: 100%;
     height: 120px;
@@ -68,15 +65,14 @@ select {
     border: 1px solid #ccc;
 }
 
-/* MUTE */
 #MUTE_CHEAK {
     margin-right: 5px;
 }
-#COUNT_TIME
-    {
-        color: #a0b3d1;
-    }
-/* TYPE BOX */
+
+#COUNT_TIME {
+    color: #a0b3d1;
+}
+
 textarea[name="TYPE_BOX"] {
     width: 100%;
     height: 120px;
@@ -87,7 +83,6 @@ textarea[name="TYPE_BOX"] {
     font-size: 15px;
 }
 
-/* TIMER BOX */
 #TYMING_BOX {
     margin-top: 15px;
     text-align: center;
@@ -98,7 +93,6 @@ textarea[name="TYPE_BOX"] {
     margin-bottom: 10px;
 }
 
-/* BUTTONS */
 #TYMING_BOX button {
     padding: 8px 15px;
     margin: 5px;
@@ -123,23 +117,21 @@ textarea[name="TYPE_BOX"] {
     margin-top: 10px;
 }
 
-/* FOOTER RESULT */
 #FOTTER_DIV {
     margin-top: 25px;
     border-top: 1px solid #ccc;
     padding-top: 15px;
 }
-/* FOOTER RESULT MAIN BOX */
+
 #FOOTER_DIV {
     margin-top: 30px;
     padding: 20px;
     border-radius: 6px;
     background: #f9f9f9;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.15);
     display: none;
 }
 
-/* COMMON ROW STYLE */
 #FOOTER_DIV .HEAD_BOX,
 #FOOTER_DIV .MID_BOX,
 #FOOTER_DIV .FOOTER_BOX {
@@ -150,19 +142,16 @@ textarea[name="TYPE_BOX"] {
     margin-bottom: 12px;
 }
 
-/* LAST ROW HAS ONLY 2 FIELDS */
 #FOOTER_DIV .FOOTER_BOX {
     grid-template-columns: 1fr 160px 1fr 160px;
 }
 
-/* LABEL */
 #FOOTER_DIV label {
     font-size: 14px;
     font-weight: 600;
     color: #333;
 }
 
-/* INPUT */
 #FOOTER_DIV input {
     height: 32px;
     padding: 4px 8px;
@@ -173,13 +162,12 @@ textarea[name="TYPE_BOX"] {
     font-weight: bold;
 }
 
-/* READONLY EFFECT */
 #FOOTER_DIV input[readonly] {
     background: #f0f0f0;
 }
 
-/* RESPONSIVE (MOBILE SAFE) */
 @media (max-width: 900px) {
+
     #FOOTER_DIV .HEAD_BOX,
     #FOOTER_DIV .MID_BOX {
         grid-template-columns: 1fr 120px;
@@ -191,7 +179,6 @@ textarea[name="TYPE_BOX"] {
 }
 
 
-/* RESULT BOXES */
 #FOTTER_DIV div {
     display: flex;
     justify-content: space-between;
@@ -209,62 +196,53 @@ textarea[name="TYPE_BOX"] {
     border: 1px solid #ccc;
     text-align: center;
 }
-#LAVEL_DIV
-    {
-        /* border: 2px solid black; */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        margin-bottom: 19px;
-        margin-top: 19px;
-        gap: 5px;
 
-    }
-#CUSTOM_INPUT
-    {
-        /* border: 2px solid black; */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-.cheak_div
-    {
-        /* border: 2px solid black; */
-        display: flex;
-        justify-content: center;
-        padding: 11px;
-    }
+#LAVEL_DIV {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 19px;
+    margin-top: 19px;
+    gap: 5px;
 
-#TYMING_BOX
-    {
-        padding: 20px;
-        box-sizing: border-box;
-        gap: 5px;
-    }
+}
 
-    /* ========== DARK THEME ========== */
+#CUSTOM_INPUT {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cheak_div {
+    display: flex;
+    justify-content: center;
+    padding: 11px;
+}
+
+#TYMING_BOX {
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 5px;
+}
 
 body {
-    background: #0f172a; /* dark blue-gray */
+    background: #0f172a;
     color: #e5e7eb;
 }
 
-/* MAIN BOX */
 #MAIN_BOX {
     background: #111827;
-    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
 }
 
-/* HEADINGS */
 #MAIN_BOX h2,
 #MAIN_BOX h4,
 label {
     color: #f9fafb;
 }
 
-/* SELECT & INPUT */
 select,
 input,
 textarea {
@@ -280,19 +258,16 @@ textarea:focus {
     border-color: #3b82f6;
 }
 
-/* SHOW BOX & TYPE BOX */
 #SHOW_BOX,
 textarea[name="TYPE_BOX"] {
     background: #020617;
     border: 1px solid #334155;
 }
 
-/* CHECKBOX TEXT */
 .cheak_div span {
     color: #e5e7eb;
 }
 
-/* BUTTONS */
 #CUSTOM_INPUT button {
     background: #2563eb;
 }
@@ -309,36 +284,30 @@ textarea[name="TYPE_BOX"] {
     background: #16a34a;
 }
 
-/* TIMER */
 #COUNT_TIME {
     color: #38bdf8;
     font-weight: bold;
 }
 
-/* FOOTER RESULT BOX */
 #FOOTER_DIV {
     background: #020617;
-    box-shadow: inset 0 0 8px rgba(255,255,255,0.05);
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05);
 }
 
-/* RESULT INPUTS */
 #FOOTER_DIV input {
     background: #020617;
     color: #22c55e;
     border: 1px solid #334155;
 }
 
-/* READONLY EFFECT */
 #FOOTER_DIV input[readonly] {
     background: #020617;
 }
 
-/* RESULT LABELS */
 #FOOTER_DIV label {
     color: #e5e7eb;
 }
 
-/* PLACEHOLDER COLOR */
 ::placeholder {
     color: #94a3b8;
 }
@@ -347,77 +316,26 @@ textarea[name="TYPE_BOX"] {
     border: 1px solid #ccc;
     padding: 10px;
     min-height: 60px;
-    font-size: 18px;
-    font-family: monospace;
-}
-
-.correct {
-    color: green;
-}
-
-.incorrect {
-    color: red;
-}
-.type-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-#colorText {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 16px;
+    font-size: 21px;
+    /* font-family: monospace; */
+    line-height: 28px;
     white-space: pre-wrap;
-    word-wrap: break-word;
-    pointer-events: none;
-}
-
-#INPUT_TYPE {
-    width: 100%;
     height: 120px;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 16px;
-    /* background: transparent; */
-     color: white;      
-    /* caret-color: black;       */
-}
-
-.correct { color: green; }
-.incorrect { color: red; }
-.type-wrapper {
-    position: relative;
-    width: 100%;
-    height: 140px;
-    border: 1px solid #334155;
-    background: #020617;
-    overflow: hidden;
-}
-
-/* COLORED TEXT */
-#colorText {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    padding: 10px;
-    font-family: monospace;
-    font-size: 16px;
-    line-height: 1.5;
-
-    white-space: pre-wrap;
-    word-wrap: break-word;
-
-    pointer-events: none;
     overflow-y: auto;
 }
 
-/* REAL TEXTAREA */
+
+.type-wrapper {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    border: 1px solid #334155;
+    background: #020617;
+    overflow: auto;
+}
+
+
+#colorText,
 #INPUT_TYPE {
     position: absolute;
     top: 0;
@@ -425,29 +343,55 @@ textarea[name="TYPE_BOX"] {
     width: 100%;
     height: 100%;
 
-    padding: 10px;
-    font-family: monospace;
-    font-size: 16px;
-    line-height: 1.5;
+    padding: 11px 10px;
+    /* font-family: monospace; */
+    font-size: 21px;
+    line-height: 28px;
 
-    background: transparent;
-    color: transparent;       
-    caret-color: #ffffff;     
+    white-space: pre-wrap;
+    word-wrap: break-word;
+
+    box-sizing: border-box;
+}
+#colorText {
+    pointer-events: none;
+}
+
+#INPUT_TYPE {
+    background: transparent !important;
+    color: transparent !important;
+    caret-color: #ffffff;
 
     border: none;
     outline: none;
     resize: none;
+    overflow-y: auto;
+    transform: none;
+}
 
+
+
+#colorText {
+    pointer-events: none;
     overflow-y: auto;
 }
 
-.correct { color: #22c55e; }
-.incorrect { color: #ef4444; }
-#SHOW_BOX {
-    height: 120px;
+#INPUT_TYPE {
+    background: transparent !important;
+    color: transparent !important;
+    caret-color: #ffffff;
+    border: none;
+    outline: none;
+    resize: none;
     overflow-y: auto;
-    white-space: pre-wrap;
-    font-family: monospace;
+}
+
+.correct {
+    color: #22c55e;
+}
+
+.incorrect {
+    color: #ef4444;
 }
 
 .confetti {
@@ -466,7 +410,6 @@ textarea[name="TYPE_BOX"] {
     }
 }
 
-button:disabled
-    {
-        cursor: not-allowed;
-    }
+button:disabled {
+    cursor: not-allowed;
+}

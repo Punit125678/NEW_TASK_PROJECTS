@@ -1,80 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slip Page</title>
     <link rel="stylesheet" href="SLIP.css">
 </head>
+
 <body>
     <form id="Form_page" onblur="year_select()">
-    <div class="main_box">
-    <input type="number" id="year" placeholder="Enter Year" onkeyup="year_select()">
-   
-    <p id="leap_year"></p>
+        <div class="main_box">
+        <label for="">Enter Year</label>
 
-<select id="month" onchange="setDays()" disabled>
-    <option value="">Select Month</option>
-    <option value="1">Jan</option>
-    <option value="2">Feb</option>
-    <option value="3">Mar</option>
-    <option value="4">Apr</option>
-    <option value="5">May</option>
-    <option value="6">Jun</option>
-    <option value="7">Jul</option>
-    <option value="8">Aug</option>
-    <option value="9">Sep</option>
-    <option value="10">Oct</option>
-    <option value="11">Nov</option>
-    <option value="12">Dec</option>
-</select>
+            <input type="text" id="year" placeholder="Enter Year" onkeyup="year_select()">
 
-<input type="number" id="dayss" placeholder="Days" readonly>
-    <input type="number" placeholder="Employee Present Days" id="PRD" oninput="REMENING_DYS()" onclick="REMENING_DYS()" disabled>
+            <p id="leap_year"></p>
+        <label for="">Enter Month</label>
 
-    <p id="EAD_ERROR"></p>
-        <input type="number" placeholder="Employee Absent Days" id="EAD" readonly disabled>
-    <input type="number"  placeholder="Employee Per Days"id="EPD" oninput="INPUT_TYPE()" onkeyup="cheak_input()" disabled>
-    <p id="salary_error"></p>
+            <select id="month" onchange="setDays()" disabled>
+                <option value="">Select Month</option>
+                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">Mar</option>
+                <option value="4">Apr</option>
+                <option value="5">May</option>
+                <option value="6">Jun</option>
+                <option value="7">Jul</option>
+                <option value="8">Aug</option>
+                <option value="9">Sep</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+            </select>
+        <label for="">Total Days :- </label>
 
+            <input type="text" id="dayss" placeholder="Days" readonly>
+        <label for="">Employee Present Days :- </label>
 
+            <input type="text" placeholder="Employee Present Days" id="PRD" oninput="REMENING_DYS(), validatePresentDays() "
+                onclick="REMENING_DYS()" disabled>
 
-    <div class="radio_click" >
-        <span>Allow CL :- </span>
-        <input type="radio" name="cl" id="cl_yes" value="yes" onclick="checkCL()" disabled> Yes
-        <input type="radio" name="cl" id="cl_no" value="no" onclick="checkCL()" disabled> No
-    </div>
-        <div id="Extra">
+            <p id="EAD_ERROR"></p>
+        <label for="">Employee Absent Days :- </label>
 
-                <input type="number" id="cl_dyas" placeholder="CL Days" oninput="AddEXTRA()">
-                
-            <div class="hr">
-                 <input type="number" id="HR" placeholder="HR Allowance %" max="50" oninput="calculateSalary()">
-                 <input type="number" id="hrinput">
-            </div>
-               
-            <div class="sd">
-                <input type="number" id="SD" placeholder="SD Allowance %" max="50" oninput="calculateSalary()">
-                <input type="number" id="sdinput">
+            <input type="text" placeholder="Employee Absent Days" id="EAD" readonly disabled>
+            <label for="">Employee Per Day Sallary</label>
+            <input type="text" placeholder="Employee Per Days" id="EPD" oninput="INPUT_TYPE(),validatePerDaySalary()" onkeyup="cheak_input()"
+                disabled>
+
+            <p id="salary_error"></p>
+                <label for="">Basic Sallary</label>
+
+            <div>
+                <input type="text" id="BASIC_SALLRY" readonly>
             </div>
 
-            <div class="focd">
-                <input type="number" id="FOCD" placeholder="FOCD Allowance %" max="30" oninput="calculateSalary()">
-                <input type="number" id="focdinput">
+            <div class="radio_click">
+                <span>Allow CL :- </span>
+                <input type="radio" name="cl" id="cl_yes" value="yes" onclick="checkCL()" disabled> Yes
+                <input type="radio" name="cl" id="cl_no" value="no" onclick="checkCL()" disabled> No
             </div>
-                
-            <div class="travel">
-                <input type="number" id="TRAVEL" placeholder="Travel Allowance %" max="20" oninput="calculateSalary()">
-                <input type="number" id="travelinput">
-            </div>
-                
 
+
+            <div id="Extra">
+        <label for="">Enter Cl Days :- </label>
+
+                <input type="text" id="cl_dyas" placeholder="CL Days" oninput="validateCLDays()">
+
+            </div>
+            <p id="CL_ERROR" style="color:red;"></p>
+
+            <div id="CL_DYS_BOX">
+        <label for="">Total Present Days :- </label>
+
+                <input type="text" id="TOTAL_PRESENT_DYS" readonly>
+        <label for="">Total Absent Days :- </label>
+
+                <input type="text" id="TOTAL_ABSENT_DYS" readonly>
+            </div>
+
+            <div class="CALCULATE_SALARY">
+        <label for="">HR Allowance %":- </label>
+
+                <div class="hr">
+
+                    <input type="text" id="HR" placeholder="HR Allowance %" oninput="validateHR(); calculateSalary();">
+                    <input type="text" id="hrinput" placeholder="HR Amount" readonly>
+                </div>
+                <p id="HR_ERROR" class="error"></p>
+
+        <label for="">SD Allowance %":- </label>
+
+                <div class="sd">
+
+                    <input type="text" id="SD" placeholder="SD Allowance %" oninput="validateSD(); calculateSalary();">
+                    <input type="text" id="sdinput" placeholder="SD Amount" readonly>
+                </div>
+                <p id="SD_ERROR" class="error"></p>
+
+        <label for="">FOCD Allowance %":- </label>
+
+                <div class="focd">
+                    <input type="text" id="FOCD" placeholder="FOCD Allowance %"
+                        oninput="validateFOCD(); calculateSalary();">
+                    <input type="text" id="focdinput" placeholder="FOCD Amount" readonly>
+                </div>
+                <p id="FOCD_ERROR" class="error"></p>
+
+        <label for="">Travel Allowance %":- </label>
+
+                <div class="travel">
+                    <input type="text" id="TRAVEL" placeholder="Travel Allowance %"
+                        oninput="validateTRAVEL(); calculateSalary();">
+                    <input type="text" id="travelinput" placeholder="Travel Amount" readonly>
+                </div>
+                <p id="TRAVEL_ERROR" class="error"></p>
+
+            </div>
+
+        <label for="">Final Sallary:- </label>
+
+            <input type="text" placeholder="Total Amount" id="Total_sallary" readonly>
         </div>
-    <input type="number" placeholder="Total Amount" id="Total_sallary" readonly>
-</div>
-</form>
+    </form>
 
-
-<script src="SLIP.js"></script>
+    <script src="SLIP.js"></script>
 </body>
+
 </html>

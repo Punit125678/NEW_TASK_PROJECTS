@@ -46,7 +46,7 @@ function LOAN_CHECK(LOAN) {
 
     if (LOAN.value.trim() === "") {
         showError("ERR_LOAN", "Loan amount required", LOAN);
-        // btn.disabled = true;
+        btn.disabled = true;
         return;
     }
 
@@ -54,7 +54,7 @@ function LOAN_CHECK(LOAN) {
 
     if (amount < 50000) {
         showError("ERR_LOAN", "Minimum loan amount is 50,000", LOAN);
-        // btn.disabled = true;
+        btn.disabled = true;
         return;
     }
 
@@ -126,7 +126,7 @@ function RATE_CHECK(RATE) {
 
     if (RATE.value.trim() === "") {
         showError("ERR_RATE", "Interest rate required", RATE);
-        // btn.disabled = true;
+        btn.disabled = true;
         return;
     }
 
@@ -134,7 +134,7 @@ function RATE_CHECK(RATE) {
 
     if (rateValue < 0.1) {
         showError("ERR_RATE", "Minimum interest rate is 0.1%", RATE);
-        // btn.disabled = true;
+        btn.disabled = true;
         return;
     }
 
@@ -208,6 +208,17 @@ function numberToWords(num) {
 
     return words.trim();
 }
+function CLEAR_LOAN_FORM() {
+
+    document.getElementById("LOAN_AMOUNT").value = "";
+    document.getElementById("ANNUAL_I_R").value = "";
+    document.getElementById("TENURE_IN_YEAR").value = "";
+
+    document.getElementById("ERR_LOAN").innerText = "";
+    document.getElementById("ERR_RATE").innerText = "";
+    document.getElementById("ERR_YEAR").innerText = "";
+}
+
 
 function CHECK_BUTTON()
 {
@@ -221,6 +232,8 @@ function CHECK_BUTTON()
 }
 
 function calculateEMI() {
+document.querySelector("#RESULT_BOX").style.display = "block";
+
 
     let loan = Number(document.getElementById("LOAN_AMOUNT").value.replace(/,/g, ""));
     let annualRate = Number(document.getElementById("ANNUAL_I_R").value);
@@ -302,5 +315,8 @@ function printResult() {
     window.print();
 }
 function goToForeclosure() {
+document.querySelector("#RESULT_BOX").style.display = "none";
+
+    CLEAR_LOAN_FORM();
     window.location.href = "FORCLOSER.html";
 }

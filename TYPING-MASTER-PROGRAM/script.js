@@ -21,32 +21,31 @@ const SOUND = document.querySelector("#MUTE_CHEAK");
 let correct = 0;
 let incorrect = 0;
 
+// typeBox.addEventListener("input", function () {
 
-typeBox.addEventListener("keydown", function (e) {
+//     let givenText = showBox.innerText;
+//     let typedText = typeBox.value;
 
-    if (e.key === "Backspace") {
-        return;
-    }
+//     if (typedText.length > givenText.length) {
+//         typeBox.value = typedText.substring(0, givenText.length);
+//         typedText = typeBox.value;
+//     }
 
-    let pos = typeBox.value.length;
-    let givenChar = showBox.innerText[pos];
-    let typedChar = e.key;
+//     correct = 0;
+//     incorrect = 0;
 
-    if (typedChar === givenChar) {
-        correct++;
-        correctBox.style.color = "green";
-        // console.log(typedChar);
+//     for (let i = 0; i < typedText.length; i++) {
+//         if (typedText[i] === givenText[i]) {
+//             correct++;
+//         } else {
+//             incorrect++;
+//         }
+//     }
 
-    }
-    else {
-        incorrect++;
-        incorrectBox.style.color = "red";
+//     correctBox.value = correct;
+//     incorrectBox.value = incorrect;
+// });
 
-    }
-
-    correctBox.value = correct;
-    incorrectBox.value = incorrect;
-});
 
 const easy = [
     "I like to learn new things every day.",
@@ -73,7 +72,7 @@ const hard = [
 ];
 
 function loadParagraph() {
-    SOUND_CHEAK();
+    // SOUND_CHEAK();
     
     const level = document.getElementById("level").value;
     const showBox = document.getElementById("SHOW_BOX");
@@ -86,7 +85,11 @@ function loadParagraph() {
         TEXT_ARA_INPUT.disabled = true;
         value1.style.display = "none";
         SOUND.disabled = true;
+            document.getElementById("SUMMID_BTN").disabled = true;
+
+
         CLEAR_INPUT_BOX();
+
 
 
         return;
@@ -100,6 +103,8 @@ function loadParagraph() {
         TEXT_ARA_INPUT.disabled = false;
         value1.style.display = "none";
         SOUND.disabled = false;
+        document.getElementById("SUMMID_BTN").disabled = false;
+
         CLEAR_INPUT_BOX();
 
 
@@ -110,6 +115,8 @@ function loadParagraph() {
         TEXT_ARA_INPUT.disabled = false;
         value1.style.display = "none";
         SOUND.disabled = false;
+        document.getElementById("SUMMID_BTN").disabled = false;
+
         CLEAR_INPUT_BOX();
 
 
@@ -121,6 +128,8 @@ function loadParagraph() {
         TEXT_ARA_INPUT.disabled = false;
         value1.style.display = "none";
         SOUND.disabled = false;
+        document.getElementById("SUMMID_BTN").disabled = false;
+
         CLEAR_INPUT_BOX();
 
 
@@ -132,6 +141,8 @@ function loadParagraph() {
         value1.style.display = "block";
         showBox.innerText = "";
         SOUND.disabled = false;
+        document.getElementById("SUMMID_BTN").disabled = false;
+
         CLEAR_INPUT_BOX();
 
 
@@ -150,33 +161,43 @@ function loadParagraph() {
     // }
 
 
-} function colorWords() {
+}
 
-    const input = document.getElementById("INPUT_TYPE");
-    const colorDiv = document.getElementById("colorText");
-    const givenText = document.getElementById("SHOW_BOX").innerText;
+function colorWords() {
 
-    let typed = input.value;
+    const givenText = showBox.innerText;
+    let typedText = typeBox.value;
+
+    if (typedText.length > givenText.length) {
+        typeBox.value = typedText.substring(0, givenText.length);
+        typedText = typeBox.value;
+    }
+
     let html = "";
+    let correct = 0;
+    let incorrect = 0;
 
-    for (let i = 0; i < typed.length; i++) {
 
-        let typedChar = typed[i];
-        let givenChar = givenText[i];
+    for (let i = 0; i < typedText.length; i++) {
 
-        if (!givenChar) {
-            break;
-        }
-
-        if (typedChar === givenChar) {
-            html += `<span class="correct">${typedChar}</span>`;
+        if (typedText[i] === givenText[i]) {
+            html += `<span class="correct">${typedText[i]}</span>`;
+            correct++;
         } else {
-            html += `<span class="incorrect">${typedChar}</span>`;
+            html += `<span class="incorrect">${typedText[i]}</span>`;
+            incorrect++;
         }
     }
 
-    colorDiv.innerHTML = html;
+
+
+    document.getElementById("colorText").innerHTML = html;
+
+    correctBox.value = correct;
+    incorrectBox.value = incorrect;
 }
+
+
 
 let TOTAL_SECONDS = 3600;
 let TIMER_ID = null;
@@ -207,7 +228,7 @@ function START_TIMER() {
         }
         document.getElementById("PAUSE_TIMER").disabled = false;
         document.getElementById("RESET_TIMER").disabled = false;
-        document.getElementById("SUMMID_BTN").disabled = false;
+        // document.getElementById("SUMMID_BTN").disabled = false;
 
 
     }, 1000);
@@ -330,19 +351,18 @@ function CONFORM_BTN() {
     TIMER_ID = null;
 
 }
-
 const muteCheckbox = document.getElementById("MUTE_CHEAK");
 const keySound = new Audio("audio.mp3");
 
-function SOUND_CHEAK() {
-    document.addEventListener("keydown", () => {
+document.addEventListener("keydown", function () {
 
-        if (muteCheckbox.checked) return;
+    if (typeBox.disabled) return;
+    if (muteCheckbox.checked) return;
 
-        keySound.currentTime = 0;
-        keySound.play();
-    });
-}
+    keySound.currentTime = 0;
+    keySound.play().catch(() => {});
+});
+
 
 
 const MASTER_TEXT = `
@@ -372,10 +392,8 @@ function LOAD_WORDS_BASIC() {
 function syncScroll() {
     const input = document.getElementById("INPUT_TYPE");
     const colorDiv = document.getElementById("colorText");
-    const showBox = document.getElementById("SHOW_BOX");
 
     colorDiv.scrollTop = input.scrollTop;
-    showBox.scrollTop = input.scrollTop;
 }
 
 function CELEBRATE() {

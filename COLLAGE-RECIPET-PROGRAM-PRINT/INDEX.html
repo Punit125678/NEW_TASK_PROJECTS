@@ -12,20 +12,18 @@
     <div id="MAIN_BOX">
 
         <div class="row">
-            <span>Assigned to :- </span><input type="text" id="A_b" oninput="Assian_person(); CHECK_BUTTON();"
-                onblur="Assian_person(); CHECK_BUTTON();">
+            <span>Assigned to :- </span><input type="text" id="A_b" oninput="Assian_person(); CHECK_BUTTON();">
 
         </div>
         <p id="ASSIAN_ERROR"></p>
         <div class="row">
-            <span>Task :- </span><input type="text" id="TASK" oninput="TASK_CHEAK(); CHECK_BUTTON();"
-                onfocus="TASK_CHEAK(); CHECK_BUTTON()">
+            <span>Task :- </span><input type="text" id="TASK" oninput="TASK_CHEAK(); CHECK_BUTTON();">
         </div>
         <p id="Task_EROOR"></p>
 
         <div class="row">
-            <span>Description :- </span><textarea name="" id="des" oninput="DESCRIPTION_CHECK(); CHECK_BUTTON();"
-                onfocus="DESCRIPTION_CHECK(); CHECK_BUTTON();"></textarea>
+            <span>Description :- </span><textarea name="" id="des"
+                oninput="DESCRIPTION_CHECK(); CHECK_BUTTON();"></textarea>
         </div>
         <p id="Description_error"></p>
 
@@ -84,7 +82,7 @@
             </div>
         </div>
         <p id="status_error"></p>
-        <button id="Task_btn" onclick=" ADD_TASK()" disabled >Add Task</button>
+        <button id="Task_btn" onclick=" ADD_TASK()" disabled>Add Task</button>
 
     </div>
 
@@ -105,9 +103,9 @@
             <h3 id="MID_TEXT">Mark Completed</h3>
         </div>
         <div id="LOADER" style="display:none;">
-        <div class="spinner"></div>
-        <p>Deleting Task...</p>
-    </div>
+            <div class="spinner"></div>
+            <p>Deleting Task...</p>
+        </div>
         <div id="FOTTER_END">
             <p id="first_box"></p>
             <p id="sec_box"></p>

@@ -11,6 +11,7 @@
 <body>
 
     <div id="MAIN_BOX">
+        <h2 id="home">Home Loan EMI Calculator</h2>
         <BUTTON id="PRINT" disabled onclick="printResult()">PRINT</BUTTON>
 
 
@@ -30,7 +31,7 @@
             Calculate EMI
         </button>
 
-        <div id="RESULT_BOX">
+        <div id="RESULT_BOX" style="display: none;">
 
             <div class="result-row">
                 <span class="O_P"> Original Principal Amount :</span>
@@ -72,7 +73,7 @@
                 <span id="t_p_AMOUNT"></span>
 
             </div>
-            <BUTTON id="FINAL" onclick="goToForeclosure()">Pay Full</BUTTON>
+            <BUTTON id="FINAL" onclick="goToForeclosure()" >Pay Full</BUTTON>
 
             <table>
                 <thead>

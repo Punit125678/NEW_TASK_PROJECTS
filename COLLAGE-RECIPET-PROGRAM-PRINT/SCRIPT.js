@@ -1,3 +1,5 @@
+let isEditMode = false;
+
 function Assian_person() {
     let Assian_INPUT = document.getElementById("A_b");
     let ERORO = document.getElementById("ASSIAN_ERROR");
@@ -31,18 +33,17 @@ function Assian_person() {
 
 
 function TASK_CHEAK() {
-    let Assian_INPUT = document.getElementById("A_b");
-    let value1 = Assian_INPUT.value.trim();
+
     let t = document.getElementById("TASK");
     let e = document.getElementById("Task_EROOR");
 
-    if(Assian_INPUT.value !== "")
-    {
-        Assian_person();
-    }
     if (t.value.trim().length < 3) {
-        e.innerText = "Fill valid task";
-        t.style.border = "2px solid red";
+
+        if (document.activeElement === t) {
+            e.innerText = "Fill valid task";
+            t.style.border = "2px solid red";
+        }
+
         return false;
     }
 
@@ -50,6 +51,27 @@ function TASK_CHEAK() {
     t.style.border = "2px solid green";
     return true;
 }
+
+function isFormValid() {
+
+    return (
+        document.getElementById("A_b").value.trim().length >= 3 &&
+        document.getElementById("TASK").value.trim().length >= 3 &&
+        document.getElementById("des").value.trim() !== "" &&
+        document.getElementById("A_D").value !== "" &&
+        document.getElementById("PRIORITY").value !== "" &&
+        (
+            first_week.checked || second_week.checked ||
+            third_week.checked || fourth_week.checked
+        ) &&
+        (
+            N_s.checked || I_P.checked || C.checked ||
+            N_F.checked || N_I.checked || C_L.checked
+        )
+    );
+
+}
+
 
 function DESCRIPTION_CHECK() {
     let d = document.getElementById("des");
@@ -128,20 +150,21 @@ function STATUS_CHECK() {
     e.innerText = "";
     return true;
 }
-
 function CHECK_BUTTON() {
 
-    if (
-        Assian_person() && TASK_CHEAK() && DESCRIPTION_CHECK() &&
-        DATE_CHECK() && PRIORITY_CHECK() && WEEK_CHECK() && STATUS_CHECK()
-    ) {
-        Task_btn.disabled = false;
-        Task_btn.style.opacity = "1";
+    let btn = document.getElementById("Task_btn");
+
+    if (isFormValid()) {
+        btn.disabled = false;
+        btn.style.opacity = "1";
     } else {
-        Task_btn.disabled = true;
-        Task_btn.style.opacity = "0.5";
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
     }
+
 }
+
+
 
 
 
@@ -223,6 +246,16 @@ function ADD_TASK() {
     document.getElementById("Completed_cheak").checked = false;
     document.getElementById("FOTTER").style.display = "block";
     let btn_tsk = document.getElementById("Task_btn");
+    if (btn_tsk.innerText === "Add Task")
+    {
+        btn_tsk.disabled = true;
+    }
+    else
+    {
+        btn_tsk.disabled = true;
+        btn_tsk.innerText = "Add Task";
+
+    }
 
     if (btn_tsk.innerText === "Add Task") {
         Swal.fire({
@@ -231,7 +264,6 @@ function ADD_TASK() {
             text: 'Your task has been added successfully!',
             confirmButtonText: 'OK'
         });
-        // ENABLE_ALL_FIELDS();
     }
     else
     {
@@ -243,7 +275,9 @@ function ADD_TASK() {
         });
         
     }
+    isEditMode = false;
 
+    
     DISABLE_ALL_FIELDS();
 
 
@@ -362,6 +396,8 @@ function Edit_function() {
     document.getElementById("tenth_box").style.backgroundColor = "";
      document.getElementById("Delete_btn").disabled = true;
         document.getElementById("Delete_btn").style.opacity = "0.5";
+    document.getElementById("Task_btn").disabled = false;
+
     ENABLE_ALL_FIELDS();
 }
 function SHOW_LOADER() {
@@ -375,6 +411,8 @@ function SHOW_LOADER() {
 
 function delete_function() {
     document.getElementById("Task_btn").innerText = "Add Task";
+    // document.getElementById("Task_btn").disabled = false;
+
     ENABLE_ALL_FIELDS();
     document.getElementById("FOTTER_END").style.display = "none";
 
@@ -387,6 +425,7 @@ function delete_function() {
         title: 'Deleted',
         text: 'Task deleted successfully!'
     });
+    isEditMode = true;
 }
 
 

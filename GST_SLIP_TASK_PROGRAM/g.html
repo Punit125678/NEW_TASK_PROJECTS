@@ -1,64 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        #LOADER {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-size: 18px;
-            z-index: 9999;
-        }
+  <meta charset="UTF-8">
+  <title>Login Page</title>
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #ddd;
-            border-top: 5px solid #4caf50;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 15px;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <button onclick="SHOW_LOADER()">CLICK</button>
-    <div id="LOADER" style="display:none;">
-        <div class="spinner"></div>
-        <p>Processing Payment...</p>
-    </div>
-    <script>
-        function SHOW_LOADER() {
-            document.getElementById("LOADER").style.display = "flex";
+<body class="bg-light">
 
-        
-            setTimeout(function() {
-                document.getElementById("LOADER").style.display = "none";
-                PAYMENT_SUCCESS(method);
-            }, 3000);
-        }
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  
+  <div class="card p-4 shadow" style="width: 350px;">
+    
+    <h3 class="text-center mb-4">Login</h3>
 
-    </script>
+    <form id="loginForm">
+      
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" placeholder="Enter email">
+        <small class="text-danger" id="emailError"></small>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <div class="input-group">
+          <input type="password" id="password" class="form-control" placeholder="Enter password">
+          <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">👁</button>
+        </div>
+        <small class="text-danger" id="passError"></small>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+
+function togglePassword() {
+  let pass = document.getElementById("password");
+
+  if (pass.type === "password") {
+    pass.type = "text";
+  } else {
+    pass.type = "password";
+  }
+}
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value.trim();
+
+  let emailError = document.getElementById("emailError");
+  let passError = document.getElementById("passError");
+
+  emailError.innerText = "";
+  passError.innerText = "";
+
+  let isValid = true;
+
+  if (email === "") {
+    emailError.innerText = "Email is required";
+    isValid = false;
+  }
+
+  if (password.length < 6) {
+    passError.innerText = "Password must be at least 6 characters";
+    isValid = false;
+  }
+
+  if (isValid) {
+    alert("Login Successful ✅");
+  }
+
+});
+
+</script>
+
 </body>
-
 </html>
