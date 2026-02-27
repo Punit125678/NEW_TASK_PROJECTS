@@ -32,7 +32,7 @@ setInterval(function () {
     if (min <= 0 && sec <= 0) {
         min = 0;
         sec = 0;
-        window.location.href = "SECOND_FILE.html/page2.html";
+        window.location.href = "pages/page2.html";
     }
 
 }, 1000);
@@ -58,7 +58,7 @@ let bulbs = document.getElementsByClassName("bulb");
 
 
 for (let i = 0; i < bulbs.length; i++) {
-    bulbs[i].src = "IMEGS-FOLDER/light-bulb-on-image.png";
+    bulbs[i].src = "assets/images/light-bulb-on-image.png";
 }
 state = 1;
 
@@ -66,12 +66,12 @@ state = 1;
 blink = setInterval(function () {
     if (state == 1) {
         for (let i = 0; i < bulbs.length; i++) {
-            bulbs[i].src = "IMEGS-FOLDER/off-image.png";
+            bulbs[i].src = "assets/images/off-image.png";
         }
         state = 0;
     } else {
         for (let i = 0; i < bulbs.length; i++) {
-            bulbs[i].src = "IMEGS-FOLDER/light-bulb-on-image.png";
+            bulbs[i].src = "assets/images/light-bulb-on-image.png";
         }
         state = 1;
     }
@@ -86,19 +86,19 @@ setInterval(function () {
     if (!img) return;
     if (hour >= 4 && hour < 12) {
         text.innerText = "GOOD MORNING";
-        img.src = "IMEGS-FOLDER/MORNING_IMEG.png";
+        img.src = "assets/images/MORNING_IMEG.png";
     }
     else if (hour >= 12 && hour < 17) {
         text.innerText = "GOOD AFTERNOON";
-        img.src = "IMEGS-FOLDER/AFTERNOON_IMEG.png";
+        img.src = "assets/images/AFTERNOON_IMEG.png";
     }
     else if (hour >= 17 && hour < 21) {
         text.innerText = "GOOD EVENING";
-        img.src = "IMEGS-FOLDER/EVENING_IMEG.png";
+        img.src = "assets/images/EVENING_IMEG.png";
     }
     else {
         text.innerText = "GOOD NIGHT";
-        img.src = "IMEGS-FOLDER/night.png";
+        img.src = "assets/images/night.png";
     }
 }, 1000);
 

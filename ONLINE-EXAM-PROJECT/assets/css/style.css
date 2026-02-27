@@ -1,0 +1,61 @@
+body{
+    background: linear-gradient(to right,#1fa2ff,#12d8fa,#a6ffcb);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.card-box{
+    width:800px;
+    background:white;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.title{
+    text-align:center;
+    color:#e74c3c;
+    font-weight:700;
+    margin-bottom:20px;
+}
+#imageInput
+{
+    overflow: hidden;
+    box-sizing: border-box;
+    
+}
+
+.image-box{
+    border:2px solid #e74c3c;
+    height:200px;
+    border-radius:10px;
+
+}
+
+.validation-box{
+    border:2px solid #e74c3c;
+    padding:10px;
+    border-radius:10px;
+    font-size:14px;
+    margin-top:15px;
+}
+
+.validation-box p{
+    margin:3px 0;
+}
+
+.valid{
+    color:green;
+}
+
+.invalid{
+    color:red;
+}
+
+button{
+    background:#e74c3c !important;
+    border:none !important;
+}

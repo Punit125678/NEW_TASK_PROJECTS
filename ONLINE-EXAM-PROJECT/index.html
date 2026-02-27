@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="card-box">
+        <h3 class="title">Student Registration</h3>
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class="mb-3">
+                    <label>Name*</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter Your Name">
+                    <p id="name-error"></p>
+                </div>
+
+                <div class="mb-3">
+                    <label>Email*</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter Your Email" oninput="validateEmail()">
+                    <small id="emailMsg"></small>
+                </div>
+
+                <div class="mb-3">
+                    <label>Password*</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter Your Password">
+                </div>
+
+                <div class="mb-3">
+                    <label>Date Of Birth*</label>
+                    <input type="date" id="dob" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Gender :</label><br>
+                    <input type="radio" name="gender" value="Male"> Male
+                    <input type="radio" name="gender" value="Female" class="ms-3"> Female
+                </div>
+
+                <div class="mb-3">
+                    <label>Upload Images*</label>
+                    <input type="file" class="form-control" id="imageInput">
+                </div>
+
+                <button id="submitBtn" class="btn btn-danger w-100" disabled onclick="goToPage()">Submit</button>
+            </div>
+
+            <div class="col-md-5">
+                <div class="image-box mb-3" id="previewDiv"></div>
+
+                <div class="validation-box">
+                    <h6>Password Validation</h6>
+                    <p id="upper" class="invalid">One Uppercase Letter Required</p>
+                    <p id="lower" class="invalid">One Lowercase Letter Required</p>
+                    <p id="number" class="invalid">One Number Digit Required</p>
+                    <p id="special" class="invalid">One Special Character Required</p>
+                    <p id="length" class="invalid">At Least 6 Characters Required</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

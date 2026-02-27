@@ -352,7 +352,7 @@ function CONFORM_BTN() {
 
 }
 const muteCheckbox = document.getElementById("MUTE_CHEAK");
-const keySound = new Audio("audio.mp3");
+const keySound = new Audio("assets/media/audio.mp3");
 
 document.addEventListener("keydown", function () {
 
