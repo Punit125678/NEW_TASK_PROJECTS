@@ -1,0 +1,109 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Cards</title>
+</head>
+
+<body>
+    <button id="btn">Click To add</button>
+    <div class="user"></div>
+
+
+    <script>
+
+        const userr = [
+            { name: "Punit", age: 20, city: "Ajnas", img: "" },
+            { name: "Rahul", age: 22, city: "Indore", img: "" },
+            { name: "Aman", age: 19, city: "Bhopal", img: "" },
+            { name: "Vikas", age: 21, city: "Ujjain", img: "" }
+        ];
+
+        const container = document.querySelector(".user");
+
+        userr.forEach((user) => {
+
+            const profile = document.createElement("div");
+            profile.className = "profile";
+
+            profile.innerHTML = `
+             <table border="1">
+        <tr>
+            <th>Name</th>
+            <td>${user.name}</td>
+        </tr>
+
+        <tr>
+            <th>Age</th>
+            <td>${user.age}</td>
+        </tr>
+
+        <tr>
+            <th>City</th>
+            <td>${user.city}</td>
+        </tr>
+    </table>
+    <br>
+
+`;
+
+            container.appendChild(profile);
+
+        });
+
+       
+        
+        document.getElementById("btn").addEventListener("click", () => {
+             const user1 = [
+            { name: "Punit", age: 20, city: "Ajnas", img: "" },
+            { name: "Rahul", age: 22, city: "Indore", img: "" },
+            { name: "Aman", age: 19, city: "Bhopal", img: "" },
+            { name: "Vikas", age: 21, city: "Ujjain", img: "" }
+        ];
+
+            user1.forEach((user) => {
+                const profile = document.createElement("div");
+                profile.className = "profile";
+                profile.innerHTML = `
+                
+                <table border="1"><table>
+                    <tr>
+                    <th>Name</th>
+                <td>${user.name}</td>
+                    </tr>
+
+             <tr>
+                 <th>Age</th>
+                <td>${user.age}</td>
+             </tr>
+
+                <tr>
+             <th>City</th>
+             <td>${user.city}</td>
+                </tr>
+                <br>
+        
+                `;
+
+                container.appendChild(profile);
+            });
+        });
+
+    </script>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>

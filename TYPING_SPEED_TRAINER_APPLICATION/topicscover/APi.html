@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="page-bg">
+        <section class="phone-frame">
+            <div class="phone-notch"></div>
+
+            <article class="insta-screen">
+                <header class="top-bar">
+                    <h1>Instagram</h1>
+                    <div class="top-icons">
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="msg-icon">
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <b class="msg-dot"></b>
+                        </span>
+                    </div>
+                </header>
+
+                <section class="feed" id="feed"></section>
+
+                <nav class="bottom-nav">
+                    <i class="fa-solid fa-house active"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-regular fa-square-plus"></i>
+                    <i class="fa-regular fa-circle-play"></i>
+                    <i class="fa-regular fa-user"></i>
+                </nav>
+            </article>
+        </section>
+    </main>
+
+    <script>
+
+        const feed = document.getElementById("feed");
+        fetch("https://randomuser.me/api/?results=1000")
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.results[2].name.first);
+                
+
+                data.results.forEach((user) => {
+
+                    const likes = Math.floor(Math.random() * 90000) + 1000;
+
+                    const username = user.name.first.toLowerCase() + "_" + user.name.last.toLowerCase();
+
+                    const post = document.createElement("div");
+                    post.className = "post-box";
+
+                    post.innerHTML = `
+
+        <div class="story-strip">
+            <div class="story-ring">
+                <img src="${user.picture.medium}">
+            </div>
+            <p>${username}</p>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+
+        <div class="post-image">
+            <img src="https://picsum.photos/seed/${user.login.uuid}/600/600">
+        </div>
+
+        <div class="post-actions">
+            <div class="left-actions">
+                <i class="fa-solid fa-heart liked"></i>
+                <i class="fa-regular fa-comment"></i>
+                <i class="fa-regular fa-paper-plane"></i>
+            </div>
+            <i class="fa-regular fa-bookmark"></i>
+        </div>
+
+        <div class="post-meta">
+            <p class="likes">${likes} likes</p>
+            <p class="caption"><span>${username}</span> lorem ipsum post demo</p>
+        </div>
+        `;
+                    feed.appendChild(post);
+                });
+            });
+    </script>
+</body>
+
+
+</html>

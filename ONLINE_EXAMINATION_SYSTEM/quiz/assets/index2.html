@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Online Exam Terms & Conditions</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f2f2f2;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .rules {
+            height: 180px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: #fafafa;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 12px;
+            width: 100%;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: gray;
+            cursor: not-allowed;
+        }
+
+        label {
+            margin-left: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h2>Online Exam Terms & Conditions</h2>
+
+        <div class="rules">
+
+            <p>
+
+                1. This online exam must be completed within the given time limit. <br><br>
+
+                2. Do not refresh or close the browser during the exam. Your exam may be submitted automatically.
+                <br><br>
+
+                3. Do not switch tabs or open other applications while taking the exam. This activity may be monitored.
+                <br><br>
+
+                4. Each question carries equal marks unless specified otherwise. <br><br>
+
+                5. Once the exam is submitted, answers cannot be changed. <br><br>
+
+                6. If any technical issue occurs, inform the exam administrator immediately. <br><br>
+
+                7. Any unfair means or cheating attempt may result in disqualification. <br><br>
+
+                8. Ensure that your internet connection is stable before starting the exam. <br><br>
+
+                9. The exam will automatically submit when the time is over. <br><br>
+
+                10. By clicking "I agree", you confirm that you will follow all the rules and regulations of the online
+                examination.
+
+            </p>
+
+        </div>
+
+        <input type="checkbox" id="check">
+        <label>I agree to the Terms & Conditions</label>
+
+        <button id="btn" disabled>Start Exam</button>
+
+    </div>
+
+    <script>
+
+        let check = document.getElementById("check");
+        let btn = document.getElementById("btn");
+
+        check.addEventListener("change", function () {
+
+            if (check.checked) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+
+        });
+
+        btn.addEventListener("click", function () {
+
+            window.location.href = "../index1.html";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
